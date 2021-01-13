@@ -1,0 +1,42 @@
+
+\documentclass[12pt]{article}   % list options between brackets
+\usepackage{graphicx}
+
+% type user-defined commands here
+
+\begin{document}
+
+\title{CS288 Assignment 1: Language Model}   % type title between braces
+\author{Reynold Shi Xin}         % type author(s) between braces
+\date{rxin@cs.berkeley.edu}    % type date between braces
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Performance Summary}
+I have implemented a trigram language model with Kneser-Ney smoothing. The exact model meets the requirements for both exact and noisy. The following performance metrics are reported on an Amazon EC2 large instance, running Ubuntu 10.04LTS with Sun JDK 1.6:
+\begin{enumerate}
+	\item BLEU score 24.533 with discounting factor 0.90;
+	\item Using hash table load factor 0.8, training takes 300s, decoding takes 300s, memory consumption at 905MB;
+	\item Using hash table load factor 0.95, training takes 400s, decoding takes 700s, memory 836MB;
+	\item Noisy model counts should be 100\% correct because the model is not ``noisy'' at all.
+\end{enumerate}
+
+Note that the above runtime is measured when outputs are printed to stdout. If we re-route output to /dev/null, the speed can be improved further.
+
+Unless otherwise stated, the memory usage number in this report includes the phrase table and vocabulary, which themselves occupy about 300MB.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Code Structure}
+This section provides a high level overview of the classes. The code is fairly modular and easy to extend. For example, I made attempts to build a noisy model using approximate hash maps, which does not even require changing the language model code at all.
+
+\begin{enumerate}
+	\item \texttt{BigramIndexer}: A hash map that maps a 64-bit bigram (two unigram indexes, 64 bits) to a 32-bit bigram index. It is simply a wrapper around \texttt{CrazilyPackedHashMap}.
+	\item \texttt{CrazilyPackedHashMap}: A fast, highly memory efficient hash map. (Section \ref{sec:crazyhashmap})
+	\item \texttt{CrazilyPackedHashMapApproximate}: The noisy version of CrazilyPackedHashMap. (Section \ref{sec:noisy})
+	\item \texttt{HashFunctions}: Provides various hash functions.
+	\item \texttt{KneserNeyTrigramLm}: The Kneser-Ney trigram language model that uses CrazilyPackedHashMap by default. If \\ \texttt{CrazilyPackedHashMapApproximate} is provided, this becomes a noisy model.
+	\item \texttt{PrimeFinder}: Provides fast functions to find prime numbers for hash table capacities.
+	\item \texttt{TrigramCounter}: A hash map for counting trigram frequencies. It is simply a wrapper around \texttt{CrazilyPackedHashMap}.
+	\item \texttt{TrigramCounterApproximate}: A wrapper around \\ \texttt{CrazilyPackedHashMapApproximate}.
