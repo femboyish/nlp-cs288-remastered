@@ -127,3 +127,58 @@ Based on Table \ref{tbl:datasize}, a single 61-bit integer (\texttt{long}) is en
 \end{figure}
 
 Table \ref{tbl:perf} illustrates the decoding time and the memory usage using various hash map load factors. The decoding time is relatively constant when the load factor is below 0.70. Once the load factor goes beyond 0.75, the performance degrades linearly because of collision. When the load factor is above 0.90, collision becomes severe and performance degradation is very evident.
+
+A somewhat surprising result is despite the bit manipulations, the runtime performance actually improved by using this hash map. Although it’s hard to verify, I suspect the speed improvement is due to higher cache hits and lower page faults thanks to the smaller data structure size.
+
+\begin{table}
+\label{tbl:perf}
+\centering
+\begin{tabular}{ c | c | c  }
+	load factor & decoding time & memory usage \\
+	\hline
+	0.70 & 300s & 997M \\
+	0.75 & 315s & 950M \\
+	0.80 & 311s & 905M \\
+	0.85 & 331s & 881M \\
+	0.90 & 354s & 861M \\
+	0.95 & 700s & 836M \\
+\end{tabular}
+\caption{Hash Map Load Factor vs Performance and Memory Usage. The decoding time includes writing output to \texttt{stdout}. The memory usage includes phrase tables and vocabulary, which themselves occupy about 300MB.}
+\end{table}
+
+
+\subsection{Pre-allocated Data Structures}
+To improve the training speed, the language model pre-allocates a large amount of memory to all counters to avoid the re-hashing and dynamic growing of data structures. To pass the sanity test, which only allows 50 MB of max heap space, the language model checks what the max heap size is, and allocates a smaller amount of memory if the max heap size is less than 500 MB.
+
+This optimization technique does not affect the memory consumption and the decoding speed. It does however reduce the training time and allows me to iterate through different algorithms and optimization techniques much faster.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Attempts for Noisy Model}
+\label{sec:noisy}
+Although my exact model also meets the requirements for the noisy model, I spent some efforts in designing noisy models that further reduce memory. Because my program is well structured, I felt the best way to attempt a noisy model was to design an approximate hash map. This would require no change to the language model code, only touching the part that initialize the hash maps.
+
+To compress the hash map, I use only a 32-bit integer array, which consists of a hash code of the key (9 bits), and the value. Because the key hash code contains only 9 bits of information, there is a potential collision here. The approximation simply ignores the collision. The hash code of the key is:
+\begin{verbatim}
+((int) (key ^ (key >>> 32))) % 509;
+\end{verbatim}
+
+Note that the above hash function is different from the hash function used to compute the location of the element. To compute the location of the element, the hash function in Section \ref{sec:hashing} is used.
+
+\begin{figure}[h*]
+	\centering
+	\includegraphics[width=6cm]{noisy_map.pdf}
+	\caption{An element in the noisy, approximate hash map}
+	\label{fig:noisy_map}
+\end{figure}
+
+I was able to reduce the memory usage to 700MB using the approximate hash map. However, the BLEU score also dropped to slightly below 22 due to too much collision.
+
+If I had spent more time in finding a better hash function, I could probably reduce the degree of collision. However, because the exact model already meets the requirement, I did not spend extra time and decided to use the exact model for the ``NOISY'' implementation.
+
+
+
+
+
+
+\end{document}
