@@ -1095,3 +1095,11 @@ key (23 + 19 = 42 bits)}</string>
 			<array>
 				<string>Canvas 1</string>
 				<real>1</real>
+				<real>1</real>
+			</array>
+		</array>
+	</dict>
+	<key>saveQuickLookFiles</key>
+	<string>YES</string>
+</dict>
+</plist>
