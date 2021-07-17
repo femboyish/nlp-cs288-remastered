@@ -69,3 +69,31 @@ public class CrazilyPackedHashMapApproximate {
       long keyPacked = Utils.pack(key1, key2);
       int checksum = HashFunctions.checksum(keyPacked) << numValueBits;
       data[location] = checksum | value;
+      return (int)value;
+   }
+   
+   /**
+    * Return the sum of all values.
+    */
+   public long sum() {
+      long sum = 0;
+      for (int i = 0; i < data.length; i++) {
+         long value = data[i] & valueMask;
+         sum += value;
+      }
+      return sum;
+   }
+   
+   protected int locatePosition(int key1, int key2) {
+      long keyPacked = Utils.pack(key1, key2);
+      int index = HashFunctions.hash(keyPacked) % data.length;
+      if (index < 0) index = -index;
+      int checksum = HashFunctions.checksum(keyPacked) << numValueBits;
+      while ((data[index] != 0) && (data[index] & checksumMask) != checksum) {
+         index++;
+         if (index == data.length) index = 0;
+      }
+      return index;
+   }
+
+}
