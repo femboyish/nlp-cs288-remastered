@@ -16,3 +16,78 @@ package edu.berkeley.nlp.assignments.assign1.student;
  * 
  * @author wolfgang.hoschek@cern.ch
  * @version 1.0, 09/24/99
+ */
+public final class HashFunctions {
+   /**
+    * Returns a hashcode for the specified value.
+    * 
+    * @return a hash code value for the specified value.
+    */
+   public static int hash(double value) {
+      assert !Double.isNaN(value) : "Values of NaN are not supported.";
+
+      long bits = Double.doubleToLongBits(value);
+      return (int) (bits ^ (bits >>> 32));
+      // return (int) Double.doubleToLongBits(value*663608941.737);
+      // this avoids excessive hashCollisions in the case values are
+      // of the form (1.0, 2.0, 3.0, ...)
+   }
+
+   /**
+    * Returns a hashcode for the specified value.
+    * 
+    * @return a hash code value for the specified value.
+    */
+   public static int hash(float value) {
+      assert !Float.isNaN(value) : "Values of NaN are not supported.";
+
+      return Float.floatToIntBits(value * 663608941.737f);
+      // this avoids excessive hashCollisions in the case values are
+      // of the form (1.0, 2.0, 3.0, ...)
+   }
+
+   /**
+    * Returns a hashcode for the specified value.
+    * 
+    * @return a hash code value for the specified value.
+    */
+   public static int hash(int value) {
+      // Multiply by prime to make sure hash can't be negative (see Knuth v3, p.
+      // 515-516)
+      return value * 31;
+   }
+
+   /**
+    * Returns a hashcode for the specified value.
+    * 
+    * @return a hash code value for the specified value.
+    */
+   public static int hash(long value) {
+      // Multiply by prime to make sure hash can't be negative (see Knuth v3, p.
+      // 515-516)
+      return ((int) (value ^ (value >>> 32))) * 31;
+   }
+
+   /**
+    * Returns a hashcode for the specified object.
+    * 
+    * @return a hash code value for the specified object.
+    */
+   public static int hash(Object object) {
+      return object == null ? 0 : object.hashCode();
+   }
+   
+   /**
+    * Calculate a 9 bit (less than 512) checksum for a long integer.
+    */
+   public static int checksum(long value) {
+      // 509 is the largest prime number smaller than 512.
+      return ((int) value * 31) % 509;
+   }
+
+   /**
+    * In profiling, it has been found to be faster to have our own local
+    * implementation of "ceil" rather than to call to {@link Math#ceil(double)}.
+    */
+   static int fastCeil(float v) {
+      int possible_result = (int) v;
