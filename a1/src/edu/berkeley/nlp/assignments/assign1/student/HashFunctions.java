@@ -91,3 +91,8 @@ public final class HashFunctions {
     */
    static int fastCeil(float v) {
       int possible_result = (int) v;
+      if (v - possible_result > 0)
+         possible_result++;
+      return possible_result;
+   }
+}
