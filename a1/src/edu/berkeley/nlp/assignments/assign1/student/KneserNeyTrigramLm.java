@@ -5,4 +5,7 @@ import java.util.List;
 
 import edu.berkeley.nlp.langmodel.EnglishWordIndexer;
 import edu.berkeley.nlp.langmodel.NgramLanguageModel;
-impo
+import edu.berkeley.nlp.util.StringIndexer;
+
+/**
+ * An trigram lan
