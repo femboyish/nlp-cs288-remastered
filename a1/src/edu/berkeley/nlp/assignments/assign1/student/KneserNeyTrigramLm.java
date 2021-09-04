@@ -8,4 +8,8 @@ import edu.berkeley.nlp.langmodel.NgramLanguageModel;
 import edu.berkeley.nlp.util.StringIndexer;
 
 /**
- * An trigram lan
+ * An trigram language model with Kneser-Ney smoothing.
+ * 
+ * @author rxin
+ */
+public cl
