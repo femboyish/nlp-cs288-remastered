@@ -12,4 +12,7 @@ import edu.berkeley.nlp.util.StringIndexer;
  * 
  * @author rxin
  */
-public cl
+public class KneserNeyTrigramLm implements NgramLanguageModel {
+
+   /**
+    * D
