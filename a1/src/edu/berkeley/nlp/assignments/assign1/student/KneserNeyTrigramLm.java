@@ -15,4 +15,6 @@ import edu.berkeley.nlp.util.StringIndexer;
 public class KneserNeyTrigramLm implements NgramLanguageModel {
 
    /**
-    * D
+    * Discounting factor in Kneser-Ney.
+    * 0.70 -> 24.493
+    *
