@@ -17,4 +17,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    /**
     * Discounting factor in Kneser-Ney.
     * 0.70 -> 24.493
-    *
+    * 0.75 -> 24.502
+    * 0.80 -> 24.520
+    * 0.90 -> 24.533
+    * 0.95 -> 24
