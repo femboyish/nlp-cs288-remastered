@@ -22,4 +22,8 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * 0.90 -> 24.533
     * 0.95 -> 24.493
     */
-   public static final float discount = 0.9
+   public static final float discount = 0.9f;
+   
+   /**
+    * Hash table load factor. The larger this is, the less memory
+    * w
