@@ -20,4 +20,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * 0.75 -> 24.502
     * 0.80 -> 24.520
     * 0.90 -> 24.533
-    * 0.95 -> 24
+    * 0.95 -> 24.493
+    */
+   public static final float discount = 0.9
