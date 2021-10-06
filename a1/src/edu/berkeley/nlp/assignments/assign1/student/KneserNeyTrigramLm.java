@@ -27,4 +27,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    /**
     * Hash table load factor. The larger this is, the less memory
     * we need to store the language model. However, performance 
-    * degrades linearly 
+    * degrades linearly when the factor goes beyond 0.7.
+    * 0.70 -> 297.570s, 997M
+    *
