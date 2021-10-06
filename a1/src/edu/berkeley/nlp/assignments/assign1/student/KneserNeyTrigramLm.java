@@ -29,4 +29,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * we need to store the language model. However, performance 
     * degrades linearly when the factor goes beyond 0.7.
     * 0.70 -> 297.570s, 997M
-    *
+    * 0.75 -> 315.191s, 950M
+    * 0.80 -> 311.193s, 905M
+    * 0.85 -> 331
