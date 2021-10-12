@@ -31,4 +31,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * 0.70 -> 297.570s, 997M
     * 0.75 -> 315.191s, 950M
     * 0.80 -> 311.193s, 905M
-    * 0.85 -> 331
+    * 0.85 -> 331.348s, 881M
+    * 0.90 -> 354.125s, 861M
+    * 0.95
