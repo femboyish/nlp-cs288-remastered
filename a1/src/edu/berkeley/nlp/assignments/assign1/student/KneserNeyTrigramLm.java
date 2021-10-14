@@ -35,4 +35,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * 0.90 -> 354.125s, 861M
     * 0.95 -> 710.900s, 836M
     */
-   public static final float loadFactor = 
+   public static final float loadFactor = 0.75f;
+   
+   /**
+    * Initial capacities for the counters and hash m
