@@ -38,4 +38,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    public static final float loadFactor = 0.75f;
    
    /**
-    * Initial capacities for the counters and hash m
+    * Initial capacities for the counters and hash maps. Note that this
+    * parameter should not affect the langua
