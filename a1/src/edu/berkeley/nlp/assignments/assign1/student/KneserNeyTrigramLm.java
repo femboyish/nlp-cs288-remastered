@@ -40,4 +40,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    /**
     * Initial capacities for the counters and hash maps. Note that this
     * parameter should not affect the language model performance. It only helps
-    * speed up the model training
+    * speed up the model training.
+    */
+   public static final int initial_unigram_capacity = 495200;
+   pu
