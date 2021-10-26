@@ -43,4 +43,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * speed up the model training.
     */
    public static final int initial_unigram_capacity = 495200;
-   pu
+   public static final int initial_bigram_capacity  = 8375000;
+   public static final
