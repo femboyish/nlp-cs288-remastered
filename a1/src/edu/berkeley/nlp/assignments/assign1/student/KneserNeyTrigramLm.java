@@ -44,4 +44,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     */
    public static final int initial_unigram_capacity = 495200;
    public static final int initial_bigram_capacity  = 8375000;
-   public static final
+   public static final int initial_trigram_capacity = 42000000;
+   // Basic stats:
+   // ---495
