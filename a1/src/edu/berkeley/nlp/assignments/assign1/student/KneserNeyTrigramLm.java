@@ -50,4 +50,9 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    // -8,374,230 bigrams  - 23 bits
    // 41,627,672 trigrams - 26 bits
    
-   // Unigram Size: 4951
+   // Unigram Size: 495172
+   // Bigram Size: 8374230
+   // Trigram Size: 29973319
+
+   
+   
