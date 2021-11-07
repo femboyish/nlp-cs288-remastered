@@ -55,4 +55,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    // Trigram Size: 29973319
 
    
-   
+   /**
+    * Smaller capacity for the sanity test.
+    */
+   public stati
