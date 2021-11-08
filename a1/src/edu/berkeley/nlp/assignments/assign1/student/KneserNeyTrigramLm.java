@@ -60,4 +60,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     */
    public static final int initial_unigram_capacity_small = 50000;
    public static final int initial_bigram_capacity_small  = 50000;
-   public static fina
+   public static final int initial_trigram_capacity_small = 50000;
+   
+   /**
+    * A small value for probabilit
