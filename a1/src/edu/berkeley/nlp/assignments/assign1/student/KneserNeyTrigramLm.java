@@ -58,4 +58,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    /**
     * Smaller capacity for the sanity test.
     */
-   public stati
+   public static final int initial_unigram_capacity_small = 50000;
+   public static f
