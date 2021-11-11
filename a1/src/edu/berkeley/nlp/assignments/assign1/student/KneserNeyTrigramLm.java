@@ -71,4 +71,8 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    /**
     * Unigram word indexer and counter.
     */
-   StringIn
+   StringIndexer wordIndexer;
+   int unigramCounter[];
+
+   /**
+    * Bigram indexer an
