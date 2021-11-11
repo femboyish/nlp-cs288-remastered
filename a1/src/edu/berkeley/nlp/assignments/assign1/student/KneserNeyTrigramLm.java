@@ -66,4 +66,9 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * A small value for probability.
     * 1e-6: 24.502
     */
-   public static final double very_small_value = 
+   public static final double very_small_value = 1e-6;
+
+   /**
+    * Unigram word indexer and counter.
+    */
+   StringIn
