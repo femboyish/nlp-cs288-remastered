@@ -78,4 +78,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * Bigram indexer and bigram counter.
     */
    BigramIndexer bigramIndexer;
-   int big
+   int bigramCounter[];
+
+   /**
+    * Trigram counter. There is no need for an indexer her
