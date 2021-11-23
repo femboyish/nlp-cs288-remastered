@@ -90,4 +90,9 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    /**
     * The three N1+(...).
     */
-   int n1plus_x_unigram
+   int n1plus_x_unigram_x[];
+   int n1plus_bigram_x[];
+   int n1plus_x_bigram[];
+   
+   /**
+    * Bas
