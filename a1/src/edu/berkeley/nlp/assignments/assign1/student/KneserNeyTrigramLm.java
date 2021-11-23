@@ -85,4 +85,9 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * data structure that consumes the most amount of memory.
     */
    TrigramCounterInterface trigramCounter;
-   int 
+   int totalTrigram = 0;
+
+   /**
+    * The three N1+(...).
+    */
+   int n1plus_x_unigram
