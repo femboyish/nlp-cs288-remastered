@@ -82,4 +82,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
 
    /**
     * Trigram counter. There is no need for an indexer here. Note this is the
-    * data structure that consumes the most am
+    * data structure that consumes the most amount of memory.
+    */
+   TrigramCounterInterface trigramCounter;
+   int 
