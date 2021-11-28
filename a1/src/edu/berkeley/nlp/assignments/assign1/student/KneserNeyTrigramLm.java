@@ -95,4 +95,9 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    int n1plus_x_bigram[];
    
    /**
-    * Bas
+    * Basic stats.
+    */
+   int num_trigrams;
+   int num_bigrams;
+   int num_unigrams;
+   
