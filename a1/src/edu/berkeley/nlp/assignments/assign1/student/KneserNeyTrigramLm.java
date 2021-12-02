@@ -101,3 +101,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    int num_bigrams;
    int num_unigrams;
    
+   double unseenBigramLogProb = 0;
+   double unseenTrigram
