@@ -104,4 +104,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    double unseenBigramLogProb = 0;
    double unseenTrigramLogProb = 0;
 
-   public KneserNeyTrigramLm(Iterable<List<String>> sente
+   public KneserNeyTrigramLm(Iterable<List<String>> sentenceCollection,
+         boolean approximate) {
+
+      if (Runtime.getRuntime().maxMemory() 
