@@ -110,3 +110,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       if (Runtime.getRuntime().maxMemory() > 500 * 1024 * 1024) {
          init(initial_unigram_capacity, initial_bigram_capacity,
                initial_trigram_capacity, approximate);
+      } else {
+         init(initial_unigram_capacity_small, initial_bigram_capacit
