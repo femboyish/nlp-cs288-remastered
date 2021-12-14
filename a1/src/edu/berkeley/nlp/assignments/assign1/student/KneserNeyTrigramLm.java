@@ -107,4 +107,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    public KneserNeyTrigramLm(Iterable<List<String>> sentenceCollection,
          boolean approximate) {
 
-      if (Runtime.getRuntime().maxMemory() 
+      if (Runtime.getRuntime().maxMemory() > 500 * 1024 * 1024) {
+         init(initial_unigram_capacity, ini
