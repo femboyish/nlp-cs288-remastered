@@ -111,4 +111,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
          init(initial_unigram_capacity, initial_bigram_capacity,
                initial_trigram_capacity, approximate);
       } else {
-         init(initial_unigram_capacity_small, initial_bigram_capacit
+         init(initial_unigram_capacity_small, initial_bigram_capacity_small,
+               initial_trigram_capacity_small, approximate);
+ 
