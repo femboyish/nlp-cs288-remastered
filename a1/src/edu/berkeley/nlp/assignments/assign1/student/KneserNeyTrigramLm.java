@@ -113,4 +113,10 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       } else {
          init(initial_unigram_capacity_small, initial_bigram_capacity_small,
                initial_trigram_capacity_small, approximate);
- 
+      }
+      
+      buildModel(sentenceCollection);
+   }
+
+   /**
+   
