@@ -122,4 +122,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * Allocate memory for the structures. The structures are allocated here so I
     * can better measure the memory consumption.
     */
-   privat
+   private void init(int unigram_cap, int bigram_cap, int trigram_cap,
+        
