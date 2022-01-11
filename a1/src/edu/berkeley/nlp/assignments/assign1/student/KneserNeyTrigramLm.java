@@ -123,4 +123,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * can better measure the memory consumption.
     */
    private void init(int unigram_cap, int bigram_cap, int trigram_cap,
-        
+         boolean approximate) {
+     Utils.reportMemoryUsage();
+      
