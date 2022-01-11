@@ -119,4 +119,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    }
 
    /**
-    * Allocate memory for the structures. The structures are allocated here so
+    * Allocate memory for the structures. The structures are allocated here so I
+    * can better measure the memory consumption.
+    */
+   privat
