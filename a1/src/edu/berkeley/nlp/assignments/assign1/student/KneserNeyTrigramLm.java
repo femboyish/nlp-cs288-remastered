@@ -125,4 +125,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    private void init(int unigram_cap, int bigram_cap, int trigram_cap,
          boolean approximate) {
      Utils.reportMemoryUsage();
-      
+      wordIndexer = EnglishWordIndexer.getIndexer();
+      Utils.reportMemoryUsage();
+  
