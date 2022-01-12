@@ -129,4 +129,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       Utils.reportMemoryUsage();
       unigramCounter = new int[unigram_cap];
       Utils.reportMemoryUsage();
-      b
+      bigramIndexer = new BigramIndexer(bigram_cap, loadFactor);
+      Utils.reportMem
