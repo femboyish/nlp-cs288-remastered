@@ -137,4 +137,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       if (!approximate) {
          trigramCounter = new TrigramCounter(trigram_cap, loadFactor);
       } else {
+         trigramCounter = new TrigramCounterApproximate(trigram_cap, loadFactor);
    
