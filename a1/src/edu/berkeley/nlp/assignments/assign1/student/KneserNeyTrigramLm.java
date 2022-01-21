@@ -135,4 +135,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       Utils.reportMemoryUsage();
       
       if (!approximate) {
-         trigramCo
+         trigramCounter = new TrigramCounter(trigram_cap, loadFactor);
+      } else {
+   
