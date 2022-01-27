@@ -149,4 +149,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       Utils.reportMemoryUsage();
    }
 
-   /*
+   /* (non-Javadoc)
+    * @see edu.berkeley.nlp.langmodel.NgramLanguageModel#ge
