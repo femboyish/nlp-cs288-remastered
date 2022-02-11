@@ -150,4 +150,8 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    }
 
    /* (non-Javadoc)
-    * @see edu.berkeley.nlp.langmodel.NgramLanguageModel#ge
+    * @see edu.berkeley.nlp.langmodel.NgramLanguageModel#getOrder()
+    */
+   @Override
+   public int getOrder() {
+     
