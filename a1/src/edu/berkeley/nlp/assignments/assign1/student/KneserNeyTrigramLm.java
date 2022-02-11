@@ -158,4 +158,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    }
 
    /* (non-Javadoc)
-    * @see edu.berkeley.nlp.langmode
+    * @see edu.berkeley.nlp.langmodel.NgramLanguageModel#getNgramLogProbability(int[], int, int)
+    */
+   @Override
+   public double
