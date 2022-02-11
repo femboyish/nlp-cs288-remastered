@@ -154,4 +154,8 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     */
    @Override
    public int getOrder() {
-     
+      return 3;
+   }
+
+   /* (non-Javadoc)
+    * @see edu.berkeley.nlp.langmode
