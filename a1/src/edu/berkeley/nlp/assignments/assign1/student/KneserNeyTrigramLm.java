@@ -165,4 +165,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       if (to - from == 3) {
          // Assertion: Trigram.
          double prob = 0.0;
-         int 
+         int word2 = ngram[from + 1];
+
+         int word1word2 = bigramIndexer.ge
