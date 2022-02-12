@@ -161,4 +161,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * @see edu.berkeley.nlp.langmodel.NgramLanguageModel#getNgramLogProbability(int[], int, int)
     */
    @Override
-   public double
+   public double getNgramLogProbability(int[] ngram, int from, int to) {
+      if (to - from ==
