@@ -167,4 +167,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
          double prob = 0.0;
          int word2 = ngram[from + 1];
 
-         int word1word2 = bigramIndexer.ge
+         int word1word2 = bigramIndexer.get(ngram[from], word2);
+         int word2word3 = bigramIndexer.get(wor
