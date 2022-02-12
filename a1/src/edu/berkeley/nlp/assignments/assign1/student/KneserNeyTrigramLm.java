@@ -162,4 +162,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     */
    @Override
    public double getNgramLogProbability(int[] ngram, int from, int to) {
-      if (to - from ==
+      if (to - from == 3) {
+         // Assertion: Trigram.
+         double prob = 0.0;
+         int 
