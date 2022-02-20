@@ -175,4 +175,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
          if (word1word2 > 0 && word2word3 > 0) {
             int trigramCount = trigramCounter.get(word1word2, ngram[from + 2]);
             if (trigramCount > 0) {
-               prob = (
+               prob = (trigramCount - discount) / word1word2count;
+            } // else p
