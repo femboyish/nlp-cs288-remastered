@@ -179,4 +179,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
             } // else prob = 0;
          } // else prob = 0;
          
-         double bigram_
+         double bigram_x = word1word2 > 0
+               ? n1plus_bigram_x[word1word2]
+               : 
