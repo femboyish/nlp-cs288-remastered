@@ -187,4 +187,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
                : very_small_value;
 
          int x_unigram_x = (word2 <= 0 || word2 >= n1plus_x_unigram_x.length)
- 
+               ? 1
+               : n1plus_x_unigram_x[word2];
+
+         pro
