@@ -195,4 +195,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
          return Math.log(prob);
 
       } else {
-         // Assertion: Big
+         // Assertion: Bigram, beginning of a sentence.
+         int word1word2 = bigramIndexer.get(ngra
