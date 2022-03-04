@@ -190,4 +190,9 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
                ? 1
                : n1plus_x_unigram_x[word2];
 
-         prob += discount * bigram_x * x_bigram / x_unigram_x / word1word2count
+         prob += discount * bigram_x * x_bigram / x_unigram_x / word1word2count;
+
+         return Math.log(prob);
+
+      } else {
+         // Assertion: Big
