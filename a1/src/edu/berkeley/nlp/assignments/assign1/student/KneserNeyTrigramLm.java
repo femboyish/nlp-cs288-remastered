@@ -198,4 +198,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
          // Assertion: Bigram, beginning of a sentence.
          int word1word2 = bigramIndexer.get(ngram[from], ngram[from + 1]);
          // if (word1word2 == 0) return unseenBigramLogProb;
-         double x_bigram = (bigramCounter[word
+         double x_bigram = (bigramCounter[word1word2] > 0)
+               ? n1plus_x_bigram[word1word2]
+               : very_s
