@@ -201,4 +201,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
          double x_bigram = (bigramCounter[word1word2] > 0)
                ? n1plus_x_bigram[word1word2]
                : very_small_value;
-         int word1count = (ngram[from] < 0 || ngram[from] >= n1pl
+         int word1count = (ngram[from] < 0 || ngram[from] >= n1plus_x_unigram_x.length)
+               ? 1
+             
