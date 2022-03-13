@@ -209,4 +209,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
             return Math.log(very_small_value);
          } else {
             if (x_bigram <= 0)
-               x_bigram = ver
+               x_bigram = very_small_value;
+            return Math.log(x_bigram / word1count);
