@@ -203,4 +203,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
                : very_small_value;
          int word1count = (ngram[from] < 0 || ngram[from] >= n1plus_x_unigram_x.length)
                ? 1
-             
+               : n1plus_x_unigram_x[ngram[from]];
+         if (word1count <= 0) {
+         
