@@ -205,4 +205,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
                ? 1
                : n1plus_x_unigram_x[ngram[from]];
          if (word1count <= 0) {
-         
+            // return unseenBigramLogProb;
+            return Math.log(very_small_value);
+ 
