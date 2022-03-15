@@ -216,4 +216,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    }
 
    /* (non-Javadoc)
-    * @see edu.berkeley.nlp.la
+    * @see edu.berkeley.nlp.langmodel.NgramLanguageModel#getCount(int[])
+    */
+   @Override
+   
