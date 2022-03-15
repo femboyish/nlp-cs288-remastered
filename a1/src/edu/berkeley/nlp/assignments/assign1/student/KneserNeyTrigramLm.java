@@ -219,4 +219,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * @see edu.berkeley.nlp.langmodel.NgramLanguageModel#getCount(int[])
     */
    @Override
-   
+   public long getCount(int[] ngram) {
+      long count = 0;
+      i
