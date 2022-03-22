@@ -223,4 +223,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       long count = 0;
       if (ngram.length == 3) {
          int word1word2 = bigramIndexer.get(ngram[0], ngram[1]);
-         if (word1word2 > 0) count =
+         if (word1word2 > 0) count = trigramCounter.get(word1word2, ngram[2]);
+      } else if (ngram.le
