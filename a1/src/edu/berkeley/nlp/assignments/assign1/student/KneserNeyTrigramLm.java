@@ -221,4 +221,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    @Override
    public long getCount(int[] ngram) {
       long count = 0;
-      i
+      if (ngram.length == 3) {
+         int word1word2 = bigramIn
