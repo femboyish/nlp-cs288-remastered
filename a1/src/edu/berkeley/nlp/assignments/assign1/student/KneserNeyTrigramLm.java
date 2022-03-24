@@ -238,4 +238,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     * Build the language model using the input sentenceCollection.
     * @param sentenceCollection
     */
-   private voi
+   private void buildModel(Iterable<List<String>> sentenceCollection) {
+      System.out.pri
