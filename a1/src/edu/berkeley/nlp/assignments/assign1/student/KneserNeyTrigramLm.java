@@ -235,4 +235,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    }
 
    /**
-    * Build the language model using the in
+    * Build the language model using the input sentenceCollection.
+    * @param sentenceCollection
+    */
+   private voi
