@@ -230,3 +230,9 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       } else if (ngram.length == 1) {
          if (ngram[0] > 0 && ngram[0] < num_unigrams)
          count = unigramCounter[ngram[0]];
+      }
+      return count;
+   }
+
+   /**
+    * Build the language model using the in
