@@ -243,4 +243,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
 
       // Loop over all sentences.
       int num_sentence = 0;
-      for (List<Stri
+      for (List<String> sentence : sentenceCollection) {
+         num_sentence++;
+         if (num_senten
