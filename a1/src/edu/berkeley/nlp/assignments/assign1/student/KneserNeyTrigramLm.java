@@ -247,3 +247,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
          num_sentence++;
          if (num_sentence % 1000000 == 0) {
             System.out.println("On sentence " + num_sentence);
+            //Utils.reportMemoryUsage();
+            //reportStatus();
