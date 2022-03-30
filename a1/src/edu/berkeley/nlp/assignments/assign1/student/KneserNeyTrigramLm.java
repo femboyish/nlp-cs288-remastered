@@ -245,4 +245,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       int num_sentence = 0;
       for (List<String> sentence : sentenceCollection) {
          num_sentence++;
-         if (num_senten
+         if (num_sentence % 1000000 == 0) {
+            System.out.println("On sentence " + num_sentence);
