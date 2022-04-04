@@ -249,3 +249,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
             System.out.println("On sentence " + num_sentence);
             //Utils.reportMemoryUsage();
             //reportStatus();
+         }
+
+         // Pad the sentence with START and 
