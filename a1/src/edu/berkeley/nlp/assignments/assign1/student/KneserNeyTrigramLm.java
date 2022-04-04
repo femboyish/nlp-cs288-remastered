@@ -251,4 +251,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
             //reportStatus();
          }
 
-         // Pad the sentence with START and 
+         // Pad the sentence with START and STOP.
+         List<String> stoppedSentence = new ArrayList<String>(s
