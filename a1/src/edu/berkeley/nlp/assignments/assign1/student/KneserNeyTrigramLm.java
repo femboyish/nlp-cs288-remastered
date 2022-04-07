@@ -254,4 +254,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
          // Pad the sentence with START and STOP.
          List<String> stoppedSentence = new ArrayList<String>(sentence);
          stoppedSentence.add(0, NgramLanguageModel.START);
-  
+         stoppedSentence.add(NgramLanguageModel.STOP);
+
+         // Get the index for
