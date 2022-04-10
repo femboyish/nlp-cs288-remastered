@@ -258,4 +258,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
 
          // Get the index for the first two words.
          int word1 = wordIndexer.addAndGetIndex(stoppedSentence.get(0));
-         int word2 = wordIndexer.addAndGetIndex(stopp
+         int word2 = wordIndexer.addAndGetIndex(stoppedSentence.get(1));
+         unigramCounter[word1]++;
+         uni
