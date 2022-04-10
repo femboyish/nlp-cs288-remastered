@@ -257,4 +257,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
          stoppedSentence.add(NgramLanguageModel.STOP);
 
          // Get the index for the first two words.
-         int word1 = wordIndexer.addAndGetInd
+         int word1 = wordIndexer.addAndGetIndex(stoppedSentence.get(0));
+         int word2 = wordIndexer.addAndGetIndex(stopp
