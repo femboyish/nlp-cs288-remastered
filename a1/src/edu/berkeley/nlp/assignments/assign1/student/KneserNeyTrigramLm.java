@@ -260,4 +260,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
          int word1 = wordIndexer.addAndGetIndex(stoppedSentence.get(0));
          int word2 = wordIndexer.addAndGetIndex(stoppedSentence.get(1));
          unigramCounter[word1]++;
-         uni
+         unigramCounter[word2]++;
+         int word1word2 = bigramIndexer.addAndGetIndex(wo
