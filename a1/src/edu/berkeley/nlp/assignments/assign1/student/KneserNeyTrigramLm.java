@@ -267,4 +267,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
          // Go over all words.
          int num_words = stoppedSentence.size();
          for (int i = 2; i < num_words; i++) {
-            // Get the unigram index and upda
+            // Get the unigram index and update the count.
+            int word3 = wordIndexer.addAndGetIn
