@@ -277,4 +277,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
 
             // Count the trigram. If it's a new trigram, incease the appropriate
             // n1plus values.
-            if (trigramCounter.increaseCount(word1wor
+            if (trigramCounter.increaseCount(word1word2, word3) == 1) {
+               // Assertion: This is a new trigram.
+ 
