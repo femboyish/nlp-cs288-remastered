@@ -272,4 +272,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
             unigramCounter[word3]++;
 
             // Get the bigram index and bigram count.
-            int word2word3 = bigramIndexer.a
+            int word2word3 = bigramIndexer.addAndGetIndex(word2, word3);
+            bigramCounter[word2word3]++;
+
+         
