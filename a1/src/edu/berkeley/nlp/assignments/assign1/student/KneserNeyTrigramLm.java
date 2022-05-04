@@ -275,4 +275,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
             int word2word3 = bigramIndexer.addAndGetIndex(word2, word3);
             bigramCounter[word2word3]++;
 
-         
+            // Count the trigram. If it's a new trigram, incease the appropriate
+            
