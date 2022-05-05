@@ -283,4 +283,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
                n1plus_bigram_x[word1word2]++;
                n1plus_x_bigram[word2word3]++;
             }
- 
+            
+            // Update the prev word indexes.
+            word1 =
