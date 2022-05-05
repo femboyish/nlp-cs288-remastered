@@ -280,4 +280,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
             if (trigramCounter.increaseCount(word1word2, word3) == 1) {
                // Assertion: This is a new trigram.
                n1plus_x_unigram_x[word2]++;
-               n1plus_bigram_x
+               n1plus_bigram_x[word1word2]++;
+               n1plus_x_bigram[word2word3]++;
+            }
+ 
