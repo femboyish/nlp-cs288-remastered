@@ -287,4 +287,8 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
             // Update the prev word indexes.
             word1 = word2;
             word2 = word3;
-            word1word2 = wor
+            word1word2 = word2word3;
+         }
+      }
+      
+      // Update stats.
