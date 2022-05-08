@@ -292,3 +292,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       }
       
       // Update stats.
+      num_unigrams = wordIndexer.size();
+      num_bigram
