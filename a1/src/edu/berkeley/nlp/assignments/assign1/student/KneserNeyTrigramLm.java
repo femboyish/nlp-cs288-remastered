@@ -304,4 +304,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       // Calculate log prob for an unseen trigram.
       unseenTrigramLogProb = Math.log(1.0 / (trigramCounter.sum() + 1.0));
       
-      Syst
+      System.out.println("unseen bigram prob = " + unseenBigramLogProb);
+     
