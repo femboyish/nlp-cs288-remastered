@@ -307,4 +307,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       System.out.println("unseen bigram prob = " + unseenBigramLogProb);
       System.out.println("unseen trigram prob = " + unseenTrigramLogProb);
       
-    
+      setToOneIfZero(n1plus_x_unigram_x);
+      setToOneIfZero(n1plus_big
