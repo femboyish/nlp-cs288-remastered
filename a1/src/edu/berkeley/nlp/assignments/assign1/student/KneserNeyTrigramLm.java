@@ -310,4 +310,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       setToOneIfZero(n1plus_x_unigram_x);
       setToOneIfZero(n1plus_bigram_x);
       setToOneIfZero(n1plus_x_bigram);
-      setToOneIfZero(bigr
+      setToOneIfZero(bigramCounter);
+      setToOneIfZero(unigramCounter);
+
+      // Finish up
