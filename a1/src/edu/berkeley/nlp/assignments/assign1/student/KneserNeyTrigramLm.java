@@ -313,4 +313,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       setToOneIfZero(bigramCounter);
       setToOneIfZero(unigramCounter);
 
-      // Finish up
+      // Finish up.
+      System.out.println("Done building language model.");
+      repo
