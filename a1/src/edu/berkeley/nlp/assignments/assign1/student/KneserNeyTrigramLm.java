@@ -315,4 +315,9 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
 
       // Finish up.
       System.out.println("Done building language model.");
-      repo
+      reportStatus();
+      Utils.reportMemoryUsage();
+   }
+   
+   /**
+    * S
