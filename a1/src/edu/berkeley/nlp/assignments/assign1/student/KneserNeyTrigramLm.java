@@ -322,4 +322,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    /**
     * Set all elements in the array that are zero to one.
     */
-   protected void s
+   protected void setToOneIfZero(int arr[]) {
+      for (int i = 0; i < arr.length; i++) {
+     
