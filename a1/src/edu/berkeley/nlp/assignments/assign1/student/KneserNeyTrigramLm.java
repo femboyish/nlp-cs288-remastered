@@ -327,4 +327,10 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
          if (arr[i] <= 0) {
             arr[i] = 1;
          }
+      }
+   }
+   
+   /**
+    * A helper function to check the counts.
+    */
   
