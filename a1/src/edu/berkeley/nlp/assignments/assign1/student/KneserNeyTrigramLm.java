@@ -320,4 +320,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    }
    
    /**
-    * S
+    * Set all elements in the array that are zero to one.
+    */
+   protected void s
