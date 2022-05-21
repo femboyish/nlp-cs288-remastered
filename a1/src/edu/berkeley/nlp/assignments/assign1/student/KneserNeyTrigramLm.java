@@ -324,4 +324,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
     */
    protected void setToOneIfZero(int arr[]) {
       for (int i = 0; i < arr.length; i++) {
-     
+         if (arr[i] <= 0) {
+            arr[i] = 1;
+         }
+  
