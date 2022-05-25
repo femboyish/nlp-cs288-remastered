@@ -333,4 +333,4 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    /**
     * A helper function to check the counts.
     */
-  
+   protected void reportCount(String word1, String word2, String
