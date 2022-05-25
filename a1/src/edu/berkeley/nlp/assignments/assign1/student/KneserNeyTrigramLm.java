@@ -336,4 +336,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    protected void reportCount(String word1, String word2, String word3) {
       int w1 = wordIndexer.addAndGetIndex(word1);
       int w2 = wordIndexer.addAndGetIndex(word2);
-      int w3 = wordIndexer.addAndGetI
+      int w3 = wordIndexer.addAndGetIndex(word3);
+      int w1array[] = {w1}, w2array[] = {w2}, w3array[] = {w3};
+   
