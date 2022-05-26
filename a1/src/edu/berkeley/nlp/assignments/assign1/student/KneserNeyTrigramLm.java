@@ -341,4 +341,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       int w1w2[] = {w1, w2}, w2w3[] = {w2, w3};
       int w1w2w3[] = {w1, w2, w3};
       System.out.println(word1 + ": " + getCount(w1array));
-      System.out
+      System.out.println(word2 + ": " + getCount(w2array));
+      System.out.println(wor
