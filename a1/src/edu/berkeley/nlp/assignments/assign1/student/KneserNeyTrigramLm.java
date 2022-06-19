@@ -352,4 +352,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       System.out.println("Unigram Size: " + wordIndexer.size());
       System.out.println("Bigram Size: " + bigramIndexer.size());
       System.out.println("Trigram Size: " + trigramCounter.size());
-      //System.out.println
+      //System.out.println("Total trigram: " + totalTrigram + ", " + trigramCounter.sum());
+ 
