@@ -349,4 +349,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    }
 
    protected void reportStatus() {
-      System.out.p
+      System.out.println("Unigram Size: " + wordIndexer.size());
+      System.out.
