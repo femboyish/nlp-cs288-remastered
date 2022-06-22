@@ -355,4 +355,7 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       //System.out.println("Total trigram: " + totalTrigram + ", " + trigramCounter.sum());
       //trigramCounter.reportTopTrigram();
       System.out.println();
-   
+   }
+
+   protected void reportTopUnigram(int start) {
+      in
