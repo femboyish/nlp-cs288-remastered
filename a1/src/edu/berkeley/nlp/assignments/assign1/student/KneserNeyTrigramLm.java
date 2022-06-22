@@ -358,4 +358,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
    }
 
    protected void reportTopUnigram(int start) {
-      in
+      int topUnigram = 0;
+      int topUnigramCount = 0;
+      for (int i = st
