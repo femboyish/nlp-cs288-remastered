@@ -366,4 +366,5 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
             topUnigramCount = unigramCounter[i];
          }
       }
-      System.out.println("Top unigram (index, word, count): " 
+      System.out.println("Top unigram (index, word, count): " + topUnigram
+            + ", " + wordIndexer.get(topUnigram) + ", " + topUnigramCou
