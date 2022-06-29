@@ -362,4 +362,6 @@ public class KneserNeyTrigramLm implements NgramLanguageModel {
       int topUnigramCount = 0;
       for (int i = start; i < unigramCounter.length; i++) {
          if (i != 22 && unigramCounter[i] > topUnigramCount) {
-            t
+            topUnigram = i;
+            topUnigramCount = unigramCounter[i];
+         }
