@@ -5,4 +5,7 @@ import java.util.List;
 import edu.berkeley.nlp.langmodel.LanguageModelFactory;
 import edu.berkeley.nlp.langmodel.NgramLanguageModel;
 
-public class NoisyLmFact
+public class NoisyLmFactory implements LanguageModelFactory
+{
+
+	public NgramLanguageModel ne
