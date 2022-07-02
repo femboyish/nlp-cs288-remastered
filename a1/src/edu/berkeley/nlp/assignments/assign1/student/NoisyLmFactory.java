@@ -8,4 +8,5 @@ import edu.berkeley.nlp.langmodel.NgramLanguageModel;
 public class NoisyLmFactory implements LanguageModelFactory
 {
 
-	public NgramLanguageModel ne
+	public NgramLanguageModel newLanguageModel(Iterable<List<String>> trainingData) {
+	   System.out.printl
