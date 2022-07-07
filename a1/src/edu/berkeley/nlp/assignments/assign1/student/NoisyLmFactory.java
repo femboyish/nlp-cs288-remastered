@@ -11,4 +11,5 @@ public class NoisyLmFactory implements LanguageModelFactory
 	public NgramLanguageModel newLanguageModel(Iterable<List<String>> trainingData) {
 	   System.out.println("Noisy language model");
 	   
-	   // Don't use approximation given our exact m
+	   // Don't use approximation given our exact model fits all requirements.
+      KneserNeyTrigramLm model = new Kne
