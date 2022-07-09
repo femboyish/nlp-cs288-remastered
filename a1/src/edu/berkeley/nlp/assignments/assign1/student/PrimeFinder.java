@@ -139,3 +139,22 @@ public final class PrimeFinder {
         
         Arrays.sort(primeCapacities);
     }
+    
+    /**
+     * Returns a prime number which is <code>&gt;= desiredCapacity</code>
+     * and very close to <code>desiredCapacity</code> (within 11% if
+     * <code>desiredCapacity &gt;= 1000</code>).
+     *
+     * @param desiredCapacity the capacity desired by the user.
+     * @return the capacity which should be used for a hashtable.
+     */
+    public static final int nextPrime(int desiredCapacity) {
+        int i = Arrays.binarySearch(primeCapacities, desiredCapacity);
+        if (i<0) {
+            // desired capacity not found, choose next prime greater
+            // than desired capacity
+            i = -i -1; // remember the semantics of binarySearch...
+        }
+        return primeCapacities[i];
+    }
+}
