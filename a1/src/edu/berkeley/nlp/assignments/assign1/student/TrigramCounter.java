@@ -13,4 +13,9 @@ package edu.berkeley.nlp.assignments.assign1.student;
  * To store the key (i.e. trigram), we need to store one unigram (495,172
  * unigrams or 19 bits) and a bigram index (8,374,230 bigrams or 23 bits).
  * 
- * In total, we need 19 + 19 + 23 = 
+ * In total, we need 19 + 19 + 23 = 61 bits to store!
+ * 
+ * @author rxin
+ * 
+ */
+public class TrigramCo
