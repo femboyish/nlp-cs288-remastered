@@ -10,4 +10,5 @@ package edu.berkeley.nlp.assignments.assign1.student;
  * The most frequent trigram in this corpus appears 468,261 times, costing 19
  * bits to store (the value).
  * 
- * To store the key (i.e. trigram), we need to store one unigram (495,1
+ * To store the key (i.e. trigram), we need to store one unigram (495,172
+ * unigrams or 19 bits) and a bigram index (8,
