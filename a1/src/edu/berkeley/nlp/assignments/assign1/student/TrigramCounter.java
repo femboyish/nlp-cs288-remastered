@@ -8,4 +8,6 @@ package edu.berkeley.nlp.assignments.assign1.student;
  * primitive to be stored.
  * 
  * The most frequent trigram in this corpus appears 468,261 times, costing 19
- * bits to store (the val
+ * bits to store (the value).
+ * 
+ * To store the key (i.e. trigram), we need to store one unigram (495,1
