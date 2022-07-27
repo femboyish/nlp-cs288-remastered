@@ -18,4 +18,5 @@ package edu.berkeley.nlp.assignments.assign1.student;
  * @author rxin
  * 
  */
-public class TrigramCo
+public class TrigramCounter extends CrazilyPackedHashMap implements
+      TrigramCounterInterface
