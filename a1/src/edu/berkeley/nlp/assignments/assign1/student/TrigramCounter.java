@@ -19,4 +19,6 @@ package edu.berkeley.nlp.assignments.assign1.student;
  * 
  */
 public class TrigramCounter extends CrazilyPackedHashMap implements
-      TrigramCounterInterface
+      TrigramCounterInterface {
+
+   public TrigramCounter(int initialCapacity, float 
