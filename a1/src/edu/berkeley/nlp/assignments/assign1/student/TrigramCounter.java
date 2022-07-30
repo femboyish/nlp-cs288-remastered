@@ -22,4 +22,8 @@ public class TrigramCounter extends CrazilyPackedHashMap implements
       TrigramCounterInterface {
 
    public TrigramCounter(int initialCapacity, float loadFactor) {
-      super(initialCapacity, loadFactor, 0x3FFFFF, 23, 19
+      super(initialCapacity, loadFactor, 0x3FFFFF, 23, 19);
+   }
+
+   /* (non-Javadoc)
+    * @see edu.berkeley.nlp.assignments.assign
