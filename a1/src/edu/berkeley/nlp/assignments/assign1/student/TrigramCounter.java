@@ -28,4 +28,6 @@ public class TrigramCounter extends CrazilyPackedHashMap implements
    /* (non-Javadoc)
     * @see edu.berkeley.nlp.assignments.assign1.student.TrigramCounterInterface#increaseCount(int, int)
     */
-   @O
+   @Override
+   public int increaseCount(int w1w2, int w3) {
+      return adju
