@@ -30,4 +30,8 @@ public class TrigramCounter extends CrazilyPackedHashMap implements
     */
    @Override
    public int increaseCount(int w1w2, int w3) {
-      return adju
+      return adjustOrPutValue(w1w2, w3, 1);
+   }
+   
+   /* (non-Javadoc)
+    * @see edu.berk
