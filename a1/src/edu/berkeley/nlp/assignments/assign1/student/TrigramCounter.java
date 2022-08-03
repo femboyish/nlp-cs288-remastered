@@ -34,4 +34,8 @@ public class TrigramCounter extends CrazilyPackedHashMap implements
    }
    
    /* (non-Javadoc)
-    * @see edu.berkeley.nlp.assignments.assign1.student.TrigramCounterInterface#reportTopTrigr
+    * @see edu.berkeley.nlp.assignments.assign1.student.TrigramCounterInterface#reportTopTrigram()
+    */
+   @Override
+   public void reportTopTrigram() {
+      l
