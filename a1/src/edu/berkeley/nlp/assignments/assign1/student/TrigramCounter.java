@@ -38,4 +38,6 @@ public class TrigramCounter extends CrazilyPackedHashMap implements
     */
    @Override
    public void reportTopTrigram() {
-      l
+      long maxCount = 0;
+      for (int i = 0; i < data.length; i++) {
+   
