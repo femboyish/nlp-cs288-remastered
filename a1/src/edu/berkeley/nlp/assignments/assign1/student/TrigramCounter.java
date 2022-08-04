@@ -44,4 +44,7 @@ public class TrigramCounter extends CrazilyPackedHashMap implements
          //int key = data[i] & keyMask;
          if (value > maxCount) maxCount = value;
       }
-      System.out.println("Top trigram count: " + ma
+      System.out.println("Top trigram count: " + maxCount);
+   }
+   
+}
