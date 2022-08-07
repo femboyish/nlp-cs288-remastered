@@ -18,3 +18,9 @@ public interface TrigramCounterInterface {
    public abstract int size();
    
    public abstract int get(int key1, int key2);
+   
+   public abstract int adjustOrPutValue(int key1, int key2, int adjustAmount);
+   
+   public abstract long sum();
+
+}
