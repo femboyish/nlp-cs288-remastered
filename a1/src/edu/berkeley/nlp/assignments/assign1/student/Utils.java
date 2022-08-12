@@ -9,4 +9,8 @@ public class Utils {
    }
 
    public static int left(long v) {
-     return (int
+     return (int)(v >>> 32);
+   }
+
+   public static int right(long v) {
+     return (int)(
