@@ -13,4 +13,8 @@ public class Utils {
    }
 
    public static int right(long v) {
-     return (int)(
+     return (int)(v & mask);
+   }
+
+   
+   public static void reportMemoryUsage()
