@@ -20,4 +20,5 @@ public class Utils {
    public static void reportMemoryUsage() {
       System.gc(); System.gc(); System.gc(); System.gc();
       long totalMem = Runtime.getRuntime().totalMemory();
-      long f
+      long freeMem = Runtime.getRuntime().freeMemory();
+      System.out.println("M
