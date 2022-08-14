@@ -17,4 +17,6 @@ public class Utils {
    }
 
    
-   public static void reportMemoryUsage()
+   public static void reportMemoryUsage() {
+      System.gc(); System.gc(); System.gc(); System.gc();
+      lo
