@@ -21,4 +21,7 @@ public class Utils {
       System.gc(); System.gc(); System.gc(); System.gc();
       long totalMem = Runtime.getRuntime().totalMemory();
       long freeMem = Runtime.getRuntime().freeMemory();
-      System.out.println("M
+      System.out.println("Memory usage is " + bytesToString(totalMem - freeMem));
+   }
+   
+   private static
