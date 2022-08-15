@@ -24,4 +24,5 @@ public class Utils {
       System.out.println("Memory usage is " + bytesToString(totalMem - freeMem));
    }
    
-   private static
+   private static String bytesToString(long b) {
+      double mb = (double) b / (1024 * 1024);
