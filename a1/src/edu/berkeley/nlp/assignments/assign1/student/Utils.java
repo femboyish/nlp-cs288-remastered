@@ -27,4 +27,5 @@ public class Utils {
    private static String bytesToString(long b) {
       double mb = (double) b / (1024 * 1024);
       if (mb >= 1) return mb >= 10 ? (int) mb + "M" : round(mb, 1) + "M";
- 
+      double kb = (double) b / (1024);
+      if (kb >= 1) return kb >= 10 ? (int) 
