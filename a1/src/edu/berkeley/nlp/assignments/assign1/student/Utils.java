@@ -32,4 +32,5 @@ public class Utils {
       return b + "";
    }
    
-   pri
+   private static double round(double x, int numPlaces) {
+      double scale = 
