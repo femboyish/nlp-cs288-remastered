@@ -15,3 +15,16 @@
 			source="1.5" target="1.5">
 			<compilerarg value="-Xlint:deprecation" />
 			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${name}-submit.jar" basedir="build_assign2/src">
+		</jar>
+		<delete dir="build_assign2" />
+	</target>
+
+	<target name="rsync" description="deploy usng rsync" depends="build">
+		<exec executable="rsync" dir="." failonerror="false">
+			<arg line='-avz -e "ssh -i /Users/rxin/.ec2/rxin-us-west.pem" assign2-submit.jar  ubuntu@ec2-50-18-3-158.us-west-1.compute.amazonaws.com:~/a2/' />
+		</exec>
+	</target>
+
+</project>
