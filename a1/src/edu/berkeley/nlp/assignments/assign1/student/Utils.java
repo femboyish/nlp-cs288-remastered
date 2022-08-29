@@ -33,4 +33,7 @@ public class Utils {
    }
    
    private static double round(double x, int numPlaces) {
-      double scale = 
+      double scale = Math.pow(10, numPlaces);
+      return Math.round(x * scale) / scale;
+   }
+}
