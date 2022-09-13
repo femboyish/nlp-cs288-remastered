@@ -1,0 +1,52 @@
+
+\documentclass[12pt]{article}   % list options between brackets
+\usepackage{graphicx}
+
+% type user-defined commands here
+
+\begin{document}
+
+\title{CS288 Assignment 2: Phrase Translation}   % type title between braces
+\author{Reynold Shi Xin}         % type author(s) between braces
+\date{rxin@cs.berkeley.edu}    % type date between braces
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+We present five implementations of phrase-based translation decoders: a language-agnostic monotonic decoder, a language-aware beam-search monotonic decoder, and three variants of distortion decoders. We benchmark the performance of the five decoders using the greedy monotonic decoder with language model as base line. Using a test data of 100 human labeled French-English sentence pairs, we observe the introduction of language model can significantly improve the BLEU score, while distortions have only minor effect on the quality of translation in terms of BLEU, although they improves the decoder model scores by a large margin. We also discuss factors that affect the runtime performance, language model score, and the BLEU score.
+\end{abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Phrase-Based Decoders}
+The phrase-based translation decoders we have implemented is based on the Pharaoh decoder \cite{pharaoh}. The Pharaoh paper also gives a detailed statistical foundation for phrase-based translation. In essence, phrase-based translation decoders pick translations by looking for the series of translation phrases that would generate the highest log probability using a translation model and a language model for the target language.
+
+In general, phrase-based decoders employ the beam search algorithm, proposed by \cite{speech}. Three possible issues would cause a new beam, or search option. First is the variability of semantics in translations. For example, the French word ``chercher'' can be translated into English as ``try to do'', or ``look for''. Second is the syntactic and grammatical differences between the same semantics. For the semantic meaning of ``try to do'', the phrase can appear in English sentences as is, or ``trying to do'', or ``to try''. Last but not least, dividing a sentence into phrases, also known as phrase alignment, is a non-trivial probabilistic process. Multiple alignment options exist, thus necessitating the creation of new beams.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Decoders}
+This section discusses the five decoders we implemented in the following order: a language-agnostic monotonic decoder, a language-aware beam-search monotonic decoder, and three variants of distortion decoders.
+
+With the exception of the language-agnostic monotonic decoder, all decoders are implemented using a variant of the beam search algorithm documented in \cite{pharaoh}.
+
+The test data set consists of 100 French sentences and 100 human translated English sentences provided by the instructor. Runtime performance is tested on an Amazon EC2 large instance (7.5GB memory, 4 EC2 Compute Units, 64-bit Ubuntu Linux 10.04LTS) in the US-West availability zone.
+
+The baseline greedy monotonic decoder achieves a BLEU score of 20.396 and a model score of -5217. Table \ref{tbl:perf} shows the results. The simple language-aware monotonic decoder gives the highest translation quality based on its BLEU score, while the distortion models are better based on the decoder model score.
+
+\begin{table}
+\label{tbl:perf}
+\centering
+\begin{tabular}{ c | c | c  }
+	decoder & decoder model score & BLEU score \\
+	\hline
+	Greedy Monotonic & -5217 & 20.396 \\
+	Language-Agnostic Monotonic & -5256 & 17.237 \\
+	Language-Aware Monotonic & -3913 & 25.761 \\
+	Linear Distortion & -3370 & 24.512 \\
+	Word-based Linear Distortion & -3362 & 24.510 \\
+	Quadratic Distortion & -3251 & 24.612 \\
+\end{tabular}
