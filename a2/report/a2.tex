@@ -121,3 +121,36 @@ Figure \ref{fig:kruntime} shows that the runtime increases linearly with respect
 
 \begin{figure}[h*]
 	\centering
+	\includegraphics[width=12cm]{k-score}
+	\caption{K has little effect on decoder model score and BLEU score.}
+	\label{fig:kscore}
+\end{figure}
+
+Figure \ref{fig:kscore} shows that increasing temporal search space (i.e. the value of K) has little effect on the BLEU score and the model score. The data are too noisy to conclude anything but there is a weak trend of diminishing return for higher K values. This is consistent with what we learned in class. It shows more complicated algorithms do not necessarily perform better than simple, fast algorithms given large amount of data \cite{dataeffect}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusion}
+We implemented five different French-English language translation decoders using a variant of the beam search algorithm. We showed that the simple language-aware monotonic decoder gives the highest translation quality based on its BLEU score, while the distortion models are better judging by the decoder model score, although the different distortion cost functions yield little differences in the final scores. We also investigated the effect of beam search size K on BLEU scores and decoder model scores and found little correlation between the two.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{abbrv}
+\bibliography{a2}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
