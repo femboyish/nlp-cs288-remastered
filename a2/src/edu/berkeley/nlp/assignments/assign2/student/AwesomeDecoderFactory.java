@@ -7,4 +7,7 @@ import edu.berkeley.nlp.mt.decoder.DistortionModel;
 import edu.berkeley.nlp.mt.phrasetable.PhraseTable;
 
 // Decoder using a quadratic distortion model (instead of linear).
-public class AwesomeDecoderFacto
+public class AwesomeDecoderFactory implements DecoderFactory
+{
+
+	public Decoder newDecoder(PhraseTable tm, NgramLan
