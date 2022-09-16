@@ -10,4 +10,5 @@ import edu.berkeley.nlp.mt.phrasetable.PhraseTable;
 public class AwesomeDecoderFactory implements DecoderFactory
 {
 
-	public Decoder newDecoder(PhraseTable tm, NgramLan
+	public Decoder newDecoder(PhraseTable tm, NgramLanguageModel lm, DistortionModel dm) {
+	  // Overwrite the distor
