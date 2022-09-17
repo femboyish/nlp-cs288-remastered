@@ -28,3 +28,18 @@ Total model score on test data was -3371.0790130316364
   public int getDistortionLimit() {
     return this.distortionLimit;
   }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.berkeley.nlp.assignments.assign2.solutions.DistortionModel#
+   * getDistortionScore(int, int)
+   */
+  public double getDistortionScore(int endPrev, int beginCurr) {
+    int dist = Math.abs(beginCurr - endPrev);
+    if (dist > distortionLimit) {
+      return Double.NEGATIVE_INFINITY;
+    }
+    return java.lang.Math.pow(weight, dist) - 1;
+  }
+}
