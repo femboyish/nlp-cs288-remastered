@@ -49,3 +49,82 @@ public class DistortingWithLmDecoder implements Decoder {
       DistortionModel dm) {
     super();
     this.tm = tm;
+    this.lm = lm;
+    this.dm = dm;
+    this.lmOrder = lm.getOrder();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.berkeley.nlp.mt.decoder.Decoder#decode(java.util.List)
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public List<ScoredPhrasePairForSentence> decode(List<String> frenchSentence) {
+    int length = frenchSentence.size();
+    PhraseTableForSentence tmState = tm.initialize(frenchSentence);
+
+    int maxPhraseLen = tmState.getMaxPhraseLength();
+
+    // Initialize the priority queues.
+    FastPriorityQueue<BeamSearchOption> beams[] = new FastPriorityQueue[length + 1];
+    for (int start = 0; start <= length; start++) {
+      beams[start] = new FastPriorityQueue<BeamSearchOption>();
+    }
+
+    // Add search beam's root node.
+    BeamSearchOption optionStart = new BeamSearchOption();
+    optionStart.lmContextBufLen = 1;
+    optionStart.lmContextBuf = new int[1];
+    optionStart.lmContextBuf[0] = EnglishWordIndexer.getIndexer()
+        .addAndGetIndex(NgramLanguageModel.START);
+    optionStart.score = 0;
+    beams[0].setPriority(optionStart, 0);
+
+    for (int start = 0; start < length; start++) {
+      
+      // Copy the list of options at position start.
+      //System.out.println("start postion #" + start + ": " + beams[start].size());
+      List<BeamSearchOption> options = new ArrayList<BeamSearchOption>(beams[start].size());
+      int count = 0;
+      while (beams[start].hasNext() && count < priorityQueueSize) {
+        options.add(beams[start].next());
+        count ++;
+      }
+      beams[start] = null;
+
+      for (int end = start + 1; end <= start + maxPhraseLen && end <= length; ++end) {
+
+        List<ScoredPhrasePairForSentence> translations = tmState
+            .getScoreSortedTranslationsForSpan(start, end);
+
+        if (translations != null) {
+          for (final ScoredPhrasePairForSentence translation : translations) {
+            
+            int[] newContextBuf = null;
+            
+            // If the translation phrase is long enough, only keep that as context.
+            if (translation.english.indexedEnglish.length >= lmOrder - 1) {
+              newContextBuf = new int[lmOrder - 1];
+              System.arraycopy(translation.english.indexedEnglish,
+                  translation.english.indexedEnglish.length - lmOrder + 1,
+                  newContextBuf, 0,
+                  lmOrder - 1);
+            }
+
+            for (BeamSearchOption option : options) {
+
+              // Distortion ...
+              int prevPhrases = 0;
+              if (option.phrasePairs != null) {
+                prevPhrases = option.phrasePairs.size();
+              }
+              
+              int dIndex = 0;
+              int d = 0;
+              do {
+
+                BeamSearchOption newOption = new BeamSearchOption();
+                if (option.phrasePairs != null) {
+                  newOption.phrasePairs = (ArrayList<ScoredPhrasePairForSentence>) option.phrasePairs
