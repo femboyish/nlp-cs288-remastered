@@ -11,4 +11,5 @@ public class AwesomeDecoderFactory implements DecoderFactory
 {
 
 	public Decoder newDecoder(PhraseTable tm, NgramLanguageModel lm, DistortionModel dm) {
-	  // Overwrite the distor
+	  // Overwrite the distortion model. Use a quadratic model.
+	  return new DistortingWithLmDecoder(tm, lm, new Awes
