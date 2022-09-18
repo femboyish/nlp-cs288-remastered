@@ -128,3 +128,42 @@ public class DistortingWithLmDecoder implements Decoder {
                 BeamSearchOption newOption = new BeamSearchOption();
                 if (option.phrasePairs != null) {
                   newOption.phrasePairs = (ArrayList<ScoredPhrasePairForSentence>) option.phrasePairs
+                      .clone();
+                } else {
+                  newOption.phrasePairs = new ArrayList<ScoredPhrasePairForSentence>(
+                      1);
+                }
+                newOption.phrasePairs.add(prevPhrases - dIndex, translation);
+
+                // Compute language model score.
+                // Note this scoring mechanism is inefficient. We should be able
+                // to reuse the previously calculated score to further compute
+                // the score for this translation. But given it is already 2AM,
+                // and I don't see how improving this efficiency will make me a
+                // better computer scientist, I am leaving it as is.
+                newOption.score = Decoder.StaticMethods.scoreHypothesis(
+                    newOption.phrasePairs, lm, dm);
+                beams[end].setPriority(newOption, newOption.score);
+
+                // Next distortion position.
+                dIndex++;
+                if (dIndex < prevPhrases) {
+                  d += option.phrasePairs.get(prevPhrases - dIndex).english.indexedEnglish.length;
+                } else {
+                  break;
+                }
+              } while (d <= dm.getDistortionLimit());
+            }
+          }
+        }
+      }
+    }
+
+
+    // Need to back trace.
+    BeamSearchOption option = beams[length].getFirst();
+
+    return option.phrasePairs;
+  }
+
+}
