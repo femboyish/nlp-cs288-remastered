@@ -74,3 +74,23 @@ public class MonotonicNoLmDecoder implements Decoder {
                   double score = translation.score;
                   if (start > 0) score += scores[start - 1];
                   if (score > scores[fpos]) {
+                     scores[fpos] = score;
+                     backtraces[fpos] = translation;
+                  }
+               }
+            }
+         }
+      }
+      
+      // Need to back trace.
+      int index = length - 1;
+      while (index > 0) {
+         ScoredPhrasePairForSentence translation = backtraces[index];
+         ret.add(0, translation);
+         index -= translation.getForeignLength();
+      }
+      
+      return ret;
+   }
+
+}
