@@ -34,3 +34,62 @@ public class MonotonicWithLmDecoder implements Decoder {
    */
 
   public static final int priorityQueueSize = 10;
+
+  public class BeamSearchOption {
+    public int[] lmContextBuf;
+    double score;
+    int lmContextBufLen;
+    
+    // used for backtrace.
+    ScoredPhrasePairForSentence phrasePair;
+    BeamSearchOption prev;
+  }
+
+  private PhraseTable tm;
+
+  private NgramLanguageModel lm;
+
+  private int lmOrder;
+
+  @SuppressWarnings("unused")
+  private DistortionModel dm;
+
+  public MonotonicWithLmDecoder(PhraseTable tm, NgramLanguageModel lm,
+      DistortionModel dm) {
+    super();
+    this.tm = tm;
+    this.lm = lm;
+    this.dm = dm;
+    this.lmOrder = lm.getOrder();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.berkeley.nlp.mt.decoder.Decoder#decode(java.util.List)
+   */
+  @Override
+  public List<ScoredPhrasePairForSentence> decode(List<String> frenchSentence) {
+    int length = frenchSentence.size();
+    PhraseTableForSentence tmState = tm.initialize(frenchSentence);
+    List<ScoredPhrasePairForSentence> ret = new LinkedList<ScoredPhrasePairForSentence>();
+
+    int maxPhraseLen = tmState.getMaxPhraseLength();
+    int lmContextBufSize = lm.getOrder() + tmState.getMaxPhraseLength() + 1;
+    int[] lmContextBuf = new int[lmContextBufSize];
+    int currentContextBufLen = 0;
+
+    // Initialize the priority queues.
+    @SuppressWarnings("unchecked")
+    FastPriorityQueue<BeamSearchOption> beams[] = new FastPriorityQueue[length + 1];
+    for (int start = 0; start <= length; start++) {
+      beams[start] = new FastPriorityQueue<BeamSearchOption>();
+    }
+
+    // Add search beam's root node.
+    BeamSearchOption optionStart = new BeamSearchOption();
+    optionStart.lmContextBufLen = 1;
+    optionStart.lmContextBuf = new int[1];
+    optionStart.lmContextBuf[0] = EnglishWordIndexer.getIndexer()
+        .addAndGetIndex(NgramLanguageModel.START);
+    optionStart.score = 0;
