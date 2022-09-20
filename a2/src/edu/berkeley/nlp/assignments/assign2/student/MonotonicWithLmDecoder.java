@@ -173,3 +173,46 @@ public class MonotonicWithLmDecoder implements Decoder {
                     newOption.lmContextBufLen - translation.english.indexedEnglish.length,
                     translation.english.indexedEnglish.length);
               }
+              
+              newOption.score = score;
+              beams[end].setPriority(newOption, score);
+              //beams[end].relaxPriority(newOption, score);
+            }
+          }
+        }
+      }
+    }
+
+    // System.out.println("Final score: " + scores[length - 1]);
+
+    // Need to back trace.
+    BeamSearchOption option = beams[length].getFirst();
+    do {
+      ret.add(0, option.phrasePair);
+      option = option.prev;
+    } while (option.prev != null);
+    
+    return ret;
+  }
+
+  private double scoreLm(final int prevLmStateLength, final int[] lmStateBuf,
+      final int totalTrgLength, final NgramLanguageModel lm) {
+    double score = 0.0;
+
+    if (prevLmStateLength < lmOrder - 1) {
+      for (int i = 1; prevLmStateLength + i < lmOrder; ++i) {
+        final double lmProb = lm.getNgramLogProbability(lmStateBuf, 0,
+            prevLmStateLength + i);
+        score += lmProb;
+      }
+    }
+
+    for (int i = 0; i <= totalTrgLength - lmOrder; ++i) {
+      final double lmProb = lm.getNgramLogProbability(lmStateBuf, i, i
+          + lmOrder);
+      score += lmProb;
+    }
+    return score;
+  }
+
+}
