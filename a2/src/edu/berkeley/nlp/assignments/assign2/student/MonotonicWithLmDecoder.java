@@ -93,3 +93,83 @@ public class MonotonicWithLmDecoder implements Decoder {
     optionStart.lmContextBuf[0] = EnglishWordIndexer.getIndexer()
         .addAndGetIndex(NgramLanguageModel.START);
     optionStart.score = 0;
+    beams[0].setPriority(optionStart, 0);
+
+    for (int start = 0; start < length; start++) {
+      
+      // Copy the list of options at position start.
+      //System.out.println("start postion #" + start + ": " + beams[start].size());
+      List<BeamSearchOption> options = new ArrayList<BeamSearchOption>(beams[start].size());
+      int count = 0;
+      while (beams[start].hasNext() && count < priorityQueueSize) {
+        options.add(beams[start].next());
+        count ++;
+      }
+      beams[start] = null;
+
+      for (int end = start + 1; end <= start + maxPhraseLen && end <= length; ++end) {
+
+        //System.out.println("(start, end) = (" + start + ", " + end + ")");
+
+        List<ScoredPhrasePairForSentence> translations = tmState
+            .getScoreSortedTranslationsForSpan(start, end);
+
+        if (translations != null) {
+          for (final ScoredPhrasePairForSentence translation : translations) {
+            
+            int[] newContextBuf = null;
+            
+            // If the translation phrase is long enough, only keep that as context.
+            if (translation.english.indexedEnglish.length >= lmOrder - 1) {
+              newContextBuf = new int[lmOrder - 1];
+              System.arraycopy(translation.english.indexedEnglish,
+                  translation.english.indexedEnglish.length - lmOrder + 1,
+                  newContextBuf, 0,
+                  lmOrder - 1);
+            }
+
+            for (BeamSearchOption option : options) {
+              BeamSearchOption newOption = new BeamSearchOption();
+              newOption.prev = option;
+              newOption.phrasePair = translation;
+
+              // Get the translation score.
+              double score = option.score;
+              score += translation.score;
+
+              // Update the lm context for language model scoring.
+              System.arraycopy(option.lmContextBuf, 0, lmContextBuf, 0,
+                  option.lmContextBuf.length);
+              System.arraycopy(translation.english.indexedEnglish, 0,
+                  lmContextBuf, option.lmContextBuf.length,
+                  translation.english.indexedEnglish.length);
+              currentContextBufLen = option.lmContextBuf.length
+                  + translation.english.indexedEnglish.length;
+
+              if (end == length) {
+                lmContextBuf[currentContextBufLen] = EnglishWordIndexer
+                    .getIndexer().addAndGetIndex(NgramLanguageModel.STOP);
+                currentContextBufLen++;
+              }
+              
+              // Score ...
+              score += scoreLm(option.lmContextBuf.length, lmContextBuf,
+                  currentContextBufLen, lm);
+
+              // Save the option into the priority queue.
+              if (newContextBuf != null) {
+                newOption.lmContextBuf = newContextBuf;
+                newOption.lmContextBufLen = lmOrder - 1;
+              } else {
+                newOption.lmContextBufLen = option.lmContextBufLen + translation.english.indexedEnglish.length;
+                if (newOption.lmContextBufLen > lmOrder - 1) {
+                  newOption.lmContextBufLen = lmOrder - 1;
+                }
+                newOption.lmContextBuf = new int[newOption.lmContextBufLen];
+                System.arraycopy(option.lmContextBuf, 0, newOption.lmContextBuf, 0,
+                    newOption.lmContextBufLen - translation.english.indexedEnglish.length);
+                System.arraycopy(translation.english.indexedEnglish, 0,
+                    newOption.lmContextBuf,
+                    newOption.lmContextBufLen - translation.english.indexedEnglish.length,
+                    translation.english.indexedEnglish.length);
+              }
