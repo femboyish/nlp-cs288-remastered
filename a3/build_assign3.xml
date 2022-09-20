@@ -1,2 +1,6 @@
 <project name="assign3" default="build" basedir=".">
-  <property name="name" locat
+  <property name="name" location="assign3"/>
+  <property environment="env"/>
+
+  <target name="build">
+    
