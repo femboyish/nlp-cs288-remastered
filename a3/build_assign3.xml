@@ -3,4 +3,5 @@
   <property environment="env"/>
 
   <target name="build">
-    
+    <delete dir="build_assign3"/>
+    <mkdir dir="build_a
