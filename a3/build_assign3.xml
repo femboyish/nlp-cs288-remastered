@@ -4,4 +4,7 @@
 
   <target name="build">
     <delete dir="build_assign3"/>
-    <mkdir dir="build_a
+    <mkdir dir="build_assign3"/>
+    <copy todir="build_assign3">
+    	<fileset dir=".">
+    		
