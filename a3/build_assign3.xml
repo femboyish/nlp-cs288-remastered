@@ -10,4 +10,6 @@
     		<include name="src/**"/>
     	</fileset>
     </copy>
-    <javac srcdir="build_assign3/src" debug="true" classpath="${name}.jar" source="1.5" target
+    <javac srcdir="build_assign3/src" debug="true" classpath="${name}.jar" source="1.5" target="1.5">
+      <compilerarg value="-Xlint:deprecation"/>
+      <include name="
