@@ -10,4 +10,4 @@
     		<include name="src/**"/>
     	</fileset>
     </copy>
-    <javac srcdir="b
+    <javac srcdir="build_assign3/src" debug="true" classpath="${name}.jar" source="1.5" target
