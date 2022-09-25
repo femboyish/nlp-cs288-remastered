@@ -14,4 +14,10 @@
       <compilerarg value="-Xlint:deprecation"/>
       <include name="**/*.java"/>
     </javac>
-    <jar destfile="${name}-submit.jar" basedir="build_assign3/s
+    <jar destfile="${name}-submit.jar" basedir="build_assign3/src">
+	</jar>
+	<delete dir="build_assign3"/>
+	
+  </target>
+</project>
+  
