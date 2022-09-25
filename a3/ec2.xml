@@ -1,1 +1,3 @@
-<project name="assign3
+<project name="assign3" default="rsync" basedir=".">
+  <property name="name" location="assign3"/>
+  <prop
