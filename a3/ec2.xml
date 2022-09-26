@@ -1,3 +1,6 @@
 <project name="assign3" default="rsync" basedir=".">
   <property name="name" location="assign3"/>
-  <prop
+  <property environment="env"/>
+
+  <target name="build">
+    <delete dir="build_a
