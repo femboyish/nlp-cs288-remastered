@@ -8,4 +8,6 @@
     <copy todir="build_assign3">
     	<fileset dir=".">
     		<include name="src/**"/>
- 
+    	</fileset>
+    </copy>
+    <javac srcdir="build_assign3/src" de
