@@ -20,4 +20,5 @@
 	
   </target>
 
-  <target 
+  <target name="rsync" description="deploy usng rsync" depends="build">
+		<exec executable="rsync
