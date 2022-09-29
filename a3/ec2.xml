@@ -11,4 +11,5 @@
     	</fileset>
     </copy>
     <javac srcdir="build_assign3/src" debug="true" classpath="${name}.jar" source="1.5" target="1.5">
-      <compi
+      <compilerarg value="-Xlint:deprecation"/>
+      <include name="**/*.java
