@@ -21,4 +21,5 @@
   </target>
 
   <target name="rsync" description="deploy usng rsync" depends="build">
-		<exec executable="rsync
+		<exec executable="rsync" dir="." failonerror="false">
+			<arg line='-avz -e "ssh -i /Users/rxin/.e
