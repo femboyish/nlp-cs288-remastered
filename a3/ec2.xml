@@ -22,4 +22,4 @@
 
   <target name="rsync" description="deploy usng rsync" depends="build">
 		<exec executable="rsync" dir="." failonerror="false">
-			<arg line='-avz -e "ssh -i /Users/rxin/.e
+			<arg line='-avz -e "ssh -i /Users/rxin/.ec2/rxin-us-west.pem" assign3-submit.jar  ubuntu@ec2-50-18-3-158.us-west-1.compute.
