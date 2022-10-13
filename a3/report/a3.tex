@@ -1,0 +1,44 @@
+
+\documentclass[12pt]{article}   % list options between brackets
+\usepackage{graphicx}
+\usepackage{subfigure}
+
+% type user-defined commands here
+
+\begin{document}
+
+\title{CS288 Assignment 3: Word Alignment}   % type title between braces
+\author{Reynold Shi Xin}         % type author(s) between braces
+\date{rxin@cs.berkeley.edu}    % type date between braces
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+We have implemented three models for word alignment in statistical translation: a naive heuristic model of choice, the IBM Model 1, and the HMM model proposed by Vogel. We examine algorithmic trade-offs in implementation and assess the three models using the Alignment Error Rate and the BLEU score produced by the translation. The two statistical models produce better results than the heuristic model, and the HMM model produces the best AER and BLEU score.
+\end{abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Alignment Models}
+
+We have implemented three alignment models: a heuristic model, an IBM-Model-1-based model \cite{ibm-models}, and an HMM-based model as proposed in \cite{hmm-model}.
+
+\subsection{Heuristic Model}
+Given an English word $e$, the heuristic model simply aligns the English word to a French word by:
+$$ \arg\max_f \frac{c(f,e)}{c(e) \cdot c(f)} $$
+where $c(f,e)$ is the number of times $f$ and $e$ appear together in a sentence pair.
+
+In reality, it is possible for an English word to be not aligned with any of the French words, also known as null alignment. This model does not take null alignment into account.
+
+
+\subsection{IBM Model 1}
+\label{sec:em}
+
+The IBM Model 1 is a mixture-based model proposed by Brown et al.~in \cite{ibm-models}. In this model, the probability of an alignment $a$ for a sentence pair $(\mathbf{f}, \mathbf{e})$ is the product of the alignment probability and the summation probability:
+$$ P(\mathbf{f}, a|\mathbf{e}) = \prod_{i} P(a_i = j|i, |\mathbf{e}|, |\mathbf{f}|) \cdot P(\mathbf{f}_i|\mathbf{e}_j) $$
+where the alignment probability is evenly distributed among all positions:
+$$ P(a_i = j|i, |\mathbf{e}|, |\mathbf{f}|) = \frac{1}{|\mathbf{e}| + 1} $$
+
+In practice, a small portion of the alignment probability is reserved for null alignment, known as the \emph{null likelihood}. In Section \ref{sec:exp}, we discuss the effect of null likelihood on the quality of the translation model.
