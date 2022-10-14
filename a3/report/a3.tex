@@ -102,3 +102,90 @@ For testing purpose, the sentences have also been hand-aligned. We report the Al
 \subfigure[Comparison of three EM methods.]{
 	\includegraphics[height=0.47\linewidth, angle=-90]{graphs/em.eps}
 	\label{fig:em}
+}
+\subfigure[Null Likelihood.]{
+	\includegraphics[height=0.47\linewidth, angle=-90]{graphs/null.eps}
+	\label{fig:null}
+}
+\label{fig:params}
+\caption{EM and null alignment likelihood.}
+\end{figure}
+
+
+\subsection{Variants of EM algorithms for IBM Model 1}
+Figure \ref{fig:em} shows how the three variants of the EM algorithm perform with respect to AER. The Hard EM variant ran for 10 iterations, while the two soft EM variants ran for 30 iterations.
+
+When there were little data, the Hard EM algorithm performed the worst and the Weird Soft EM algorithm was the clear choice. However, as the corpus size grows, the difference between Soft EM and Weird Soft EM diminished, eventually resulting in less than one percent difference between the two.
+
+
+\subsection{Null Likelihood}
+We also studied the effect of the null alignment likelihood in the context of IBM Model 1. Holding everything constant, we varied the null likelihood from $0.1$ to $0.35$ and trained the aligner using the Soft EM algorithm. 
+
+Figure \ref{fig:null} reports the results. Although we were able to find a sweet spot at 0.28, the null likelihood has a rather small effect on the AER. It merely affects AER by less than one percent.
+
+
+\subsection{Alignment Quality and Error Analysis}
+
+\begin{figure}[h*]
+\centering
+\subfigure[]{
+	\includegraphics[height=0.7\linewidth, angle=-90]{graphs/perf_aer.eps}
+	\label{fig:aer}
+}
+\subfigure[.]{
+	\includegraphics[height=0.7\linewidth, angle=-90]{graphs/perf_bleu.eps}
+	\label{fig:bleu}
+}
+\label{fig:perf}
+\caption{Alignment quality of three models.}
+\end{figure}
+
+We ran the three models (Heuristic, IBM Model 1 with Weird Soft EM, and HMM) on the corpus up to 1 million sentence pairs. The general trend for all models is that both AER and BLEU score improves significantly as we use a larger corpus. This confirms the hypothesis in \cite{data-effect}. Even in the simple Heuristic model, AER was reduced to 46\% and BLEU was at 21.2 with a million sentences. IBM Model 1 produced an AER of 23\% and BLEU score of 25.8. The HMM model performed the best, with an AER of 16\% and BLEU of 28.8.
+
+Having examined the alignment output by each of the model, we outline the weakness of the models here.
+
+The Heuristic model aligns English words to French words. Aside from the fact that the Heuristic model is naive, many French words are not aligned at all to anything because the French sentences are in general longer than the English translations.
+
+For IBM Model 1, we observe the well-known problem that French words are more likely to be aligned to rare English words. As shown in Figure \ref{fig:model1align}, four French words are aligned to the English word ``Canadair''. 
+
+\begin{figure}[h]
+\centering
+{\tiny
+\begin{verbatim}
+	[#]                                             | cela
+	   ( )   ( )                      #             | �quivaut
+	      ( )    #                                  | �
+	      (#)                                       | peu
+	      (#)                                       | pr�s
+	            [#]                                 | �
+	               [ ]                              | les
+	                     [#]                        | 440
+	                        [#]                     | millions
+	                  ( )   ( )                     | de
+	                  [#]                           | dollars
+	                           [ ]    #             | vers�s
+	             #                [ ]               | �
+	                                 [#]            | Canadair
+	                                    (#)         | en
+	                #                   ( )         | le
+	                                  # ( )         | espace
+	                                    ( )         | de
+	                                       [#]      | deux
+	                                          [#]   | ans
+	                                             [#]| .
+	------------------------------------------------'
+	 t  i  r  e  t  t  $  4  m  p  t  C  i  t  y  . 
+	 h  s  o  q  o  h     4  i  a  o  a  n  w  e    
+	 a     u  u     e     0  l  i     n     o  a    
+	 t     g  a              l  d     a        r    
+	       h  l              i        d        s    
+	       l                 o        a             
+	       y                 n        i             
+	                                  r
+\end{verbatim}
+}
+\label{fig:model1align}
+\caption{An example alignment for IBM Model 1.}
+\end{figure}
+
+For both the HMM model and the IBM model, we are doing one-way alignment from French to English. This rules out the possibility that multiple English words being aligned to a single French word. To overcome this problem, Liang proposed in \cite{align-agreement} using an agreement model that does bi-directional alignment based on two one-way alignments. 
