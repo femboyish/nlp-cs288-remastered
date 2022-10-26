@@ -1,1 +1,2 @@
-#model null maxtrain iterati
+#model null maxtrain iterations precision recall AER
+soft	0.1	10000	30	0.59400384	0.699356117	0.3
