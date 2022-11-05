@@ -8,4 +8,5 @@ set size 0.7, 0.7
 set yrange [0.0:1.0]
 set logscale x
 
-plot 'perf_
+plot 'perf_heuristic.dat' using 3:7 title 'Heuristic' w linespoints, \
+     'perf_
