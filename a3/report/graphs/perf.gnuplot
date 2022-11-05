@@ -9,4 +9,4 @@ set yrange [0.0:1.0]
 set logscale x
 
 plot 'perf_heuristic.dat' using 3:7 title 'Heuristic' w linespoints, \
-     'perf_
+     'perf_model1.dat' using 3:7 title 'Model 1 Weird Soft EM' w linespoints, 
