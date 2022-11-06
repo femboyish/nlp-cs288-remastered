@@ -15,4 +15,6 @@ plot 'perf_heuristic.dat' using 3:7 title 'Heuristic' w linespoints, \
 set output 'perf_bleu.eps'
 set key left top
 set ylabel 'BLEU'
-set yrange[1:3
+set yrange[1:30]
+plot 'perf_heuristic.dat' using 3:9 title 'Heuristic' w linespoints, \
+     '
