@@ -12,4 +12,7 @@ plot 'perf_heuristic.dat' using 3:7 title 'Heuristic' w linespoints, \
      'perf_model1.dat' using 3:7 title 'Model 1 Weird Soft EM' w linespoints, \
      'perf_hmm.dat' using 3:7 title 'HMM' w linespoints
 
-s
+set output 'perf_bleu.eps'
+set key left top
+set ylabel 'BLEU'
+set yrange[1:3
