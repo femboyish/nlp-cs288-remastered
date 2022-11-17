@@ -42,4 +42,7 @@ gnudict begin
 /vpt vpt_ def
 Level1 {} {
 /SDict 10 dict def
-systemdict /pdfm
+systemdict /pdfmark known not {
+  userdict /pdfmark systemdict /cleartomark get put
+} if
+SDict
