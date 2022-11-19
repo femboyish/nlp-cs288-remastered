@@ -58,4 +58,9 @@ end
 } ifelse
 /doclip {
   ClipToBoundingBox {
-    newpath 201 50 moveto 554 50 lineto 554 554 li
+    newpath 201 50 moveto 554 50 lineto 554 554 lineto 201 554 lineto closepath
+    clip
+  } if
+} def
+%
+% Gnuplot Prolog 
