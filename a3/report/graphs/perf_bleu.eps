@@ -91,4 +91,5 @@ end
  {pop pop pop 0 setgray Solid {pop []} if 0 setdash} ifelse} def
 /BL {stroke userlinewidth 2 mul setlinewidth
 	Rounded {1 setlinejoin 1 setlinecap} if} def
-/AL {stroke use
+/AL {stroke userlinewidth 2 div setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
