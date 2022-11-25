@@ -94,4 +94,6 @@ end
 /AL {stroke userlinewidth 2 div setlinewidth
 	Rounded {1 setlinejoin 1 setlinecap} if} def
 /UL {dup gnulinewidth mul /userlinewidth exch def
-	dup 1 lt {pop 1} if
+	dup 1 lt {pop 1} if 10 mul /udl exch def} def
+/PL {stroke userlinewidth setlinewidth
+	Rounded {1
