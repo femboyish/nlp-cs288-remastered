@@ -130,4 +130,7 @@ end
   hpt vpt V hpt neg vpt V closepath stroke
   Pnt} def
 /Pls {stroke [] 0 setdash vpt sub M 0 vpt2 V
-  currentpoint stro
+  currentpoint stroke M
+  hpt neg vpt neg R hpt2 0 V stroke
+ } def
+/Box {stroke [] 0 setdash 2 copy exch hp
