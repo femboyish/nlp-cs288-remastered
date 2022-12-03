@@ -141,4 +141,7 @@ end
   hpt2 vpt2 neg V currentpoint stroke M
   hpt2 neg 0 R hpt2 vpt2 V stroke} def
 /TriU {stroke [] 0 setdash 2 copy vpt 1.12 mul add M
-  hpt neg v
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke
+  Pnt} 
