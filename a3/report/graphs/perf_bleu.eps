@@ -146,4 +146,6 @@ end
   hpt neg vpt 1.62 mul V closepath stroke
   Pnt} def
 /Star {2 copy Pls Crs} def
-/BoxF {stroke [] 0 s
+/BoxF {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V 
