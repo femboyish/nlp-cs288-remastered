@@ -227,4 +227,6 @@ end
 /C15 {BL [] 0 setdash 2 copy vpt 0 360 arc closepath fill
 	vpt 0 360 arc closepath} bind def
 /Rec {newpath 4 2 roll moveto 1 index 0 rlineto 0 exch rlineto
-	neg 0 rl
+	neg 0 rlineto closepath} bind def
+/Square {dup Rec} bind def
+/Bsquare {vpt s
