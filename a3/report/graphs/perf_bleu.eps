@@ -229,4 +229,5 @@ end
 /Rec {newpath 4 2 roll moveto 1 index 0 rlineto 0 exch rlineto
 	neg 0 rlineto closepath} bind def
 /Square {dup Rec} bind def
-/Bsquare {vpt s
+/Bsquare {vpt sub exch vpt sub exch vpt2 Square} bind def
+/S0 {BL [] 0 setdash 2 co
