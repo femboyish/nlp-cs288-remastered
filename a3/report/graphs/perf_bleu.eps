@@ -230,4 +230,5 @@ end
 	neg 0 rlineto closepath} bind def
 /Square {dup Rec} bind def
 /Bsquare {vpt sub exch vpt sub exch vpt2 Square} bind def
-/S0 {BL [] 0 setdash 2 co
+/S0 {BL [] 0 setdash 2 copy moveto 0 vpt rlineto BL Bsquare} bind def
+/S1 {BL [] 0 setdash 2 copy vpt Squ
