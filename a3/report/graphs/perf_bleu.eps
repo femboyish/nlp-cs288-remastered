@@ -268,4 +268,6 @@ end
 /D13 {gsave translate 45 rotate 0 0 S13 stroke grestore} bind def
 /D14 {gsave translate 45 rotate 0 0 S14 stroke grestore} bind def
 /D15 {gsave translate 45 rotate 0 0 S15 stroke grestore} bind def
-/DiaE {stroke [] 0 setda
+/DiaE {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath
