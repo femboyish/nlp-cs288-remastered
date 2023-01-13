@@ -270,4 +270,6 @@ end
 /D15 {gsave translate 45 rotate 0 0 S15 stroke grestore} bind def
 /DiaE {stroke [] 0 setdash vpt add M
   hpt neg vpt neg V hpt vpt neg V
-  hpt vpt V hpt neg vpt V closepath
+  hpt vpt V hpt neg vpt V closepath stroke} def
+/BoxE {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 n
