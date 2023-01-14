@@ -283,4 +283,6 @@ end
   hpt 2 mul 0 V
   hpt neg vpt -1.62 mul V closepath stroke} def
 /PentE {stroke [] 0 setdash gsave
-  translate 0 h
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore} def
+/CircE
