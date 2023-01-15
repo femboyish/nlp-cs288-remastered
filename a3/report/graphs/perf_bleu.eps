@@ -287,4 +287,6 @@ end
   closepath stroke grestore} def
 /CircE {stroke [] 0 setdash 
   hpt 0 360 arc stroke} def
-/Opaque {gsave closepath 1 setg
+/Opaque {gsave closepath 1 setgray fill grestore 0 setgray closepath} def
+/DiaW {stroke [] 0 setdash vpt add M
+  hp
