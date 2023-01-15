@@ -289,4 +289,5 @@ end
   hpt 0 360 arc stroke} def
 /Opaque {gsave closepath 1 setgray fill grestore 0 setgray closepath} def
 /DiaW {stroke [] 0 setdash vpt add M
-  hp
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V Opaque 
