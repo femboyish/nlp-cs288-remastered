@@ -290,4 +290,6 @@ end
 /Opaque {gsave closepath 1 setgray fill grestore 0 setgray closepath} def
 /DiaW {stroke [] 0 setdash vpt add M
   hpt neg vpt neg V hpt vpt neg V
-  hpt vpt V hpt neg vpt V Opaque 
+  hpt vpt V hpt neg vpt V Opaque stroke} def
+/BoxW {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 
