@@ -307,4 +307,7 @@ end
   Opaque stroke grestore} def
 /CircW {stroke [] 0 setdash 
   hpt 0 360 arc Opaque stroke} def
-/BoxFill {gs
+/BoxFill {gsave Rec 1 setgray fill grestore} def
+/Density {
+  /Fillden exch def
+  cur
