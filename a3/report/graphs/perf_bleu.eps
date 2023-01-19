@@ -310,4 +310,6 @@ end
 /BoxFill {gsave Rec 1 setgray fill grestore} def
 /Density {
   /Fillden exch def
-  cur
+  currentrgbcolor
+  /ColB exch def /ColG exch def /ColR exch def
+  /ColR ColR Fill
