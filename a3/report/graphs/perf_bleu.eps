@@ -312,4 +312,6 @@ end
   /Fillden exch def
   currentrgbcolor
   /ColB exch def /ColG exch def /ColR exch def
-  /ColR ColR Fill
+  /ColR ColR Fillden mul Fillden sub 1 add def
+  /ColG ColG Fillden mul Fillden sub 1 add def
+  /Col
