@@ -317,4 +317,5 @@ end
   /ColB ColB Fillden mul Fillden sub 1 add def
   ColR ColG ColB setrgbcolor} def
 /BoxColFill {gsave Rec PolyFill} def
-/PolyFill {gsave Density fill grestore gr
+/PolyFill {gsave Density fill grestore grestore} def
+/h {rlineto rlineto rlineto gsave closepath fill grestore} bi
