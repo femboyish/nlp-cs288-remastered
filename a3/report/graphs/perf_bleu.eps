@@ -328,4 +328,5 @@ end
 %	 XX = 0/1 for no/yes cross-hatch
 %
 /PatternFill {gsave /PFa [ 9 2 roll ] def
-  PFa 0
+  PFa 0 get PFa 2 get 2 div add PFa 1 get PFa 3 get 2 div add translate
+  PFa 2 get -2 d
