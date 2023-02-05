@@ -333,4 +333,6 @@ end
   gsave 1 setgray fill grestore clip
   currentlinewidth 0.5 mul setlinewidth
   /PFs PFa 2 get dup mul PFa 3 get dup mul add sqrt def
-  0 0 M PFa 5 get rotate PFs
+  0 0 M PFa 5 get rotate PFs -2 div dup translate
+  0 1 PFs PFa 4 get div 1 add floor cvi
+	{PFa 4 get 
