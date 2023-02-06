@@ -342,4 +342,7 @@ end
  } if
   stroke grestore} def
 %
-/lan
+/languagelevel where
+ {pop languagelevel} {1} ifelse
+ 2 lt
+	{/InterpretLevel1 tru
