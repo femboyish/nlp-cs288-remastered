@@ -433,4 +433,7 @@ end
 Level1 {Level1PatternFill} {Level2PatternFill} ifelse
 %
 /Symbol-Oblique /Symbol findfont [1 0 .167 1 0 0] makefont
-dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} for
+dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} forall
+currentdict end definefont pop
+/MFshow {
+   { dup
