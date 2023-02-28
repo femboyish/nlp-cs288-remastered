@@ -448,4 +448,5 @@ currentdict end definefont pop
      pop aload pop M} ifelse }ifelse }ifelse }
      ifelse }
    forall} def
-/Gswidth {dup type /stringtype eq {stringwidth} 
+/Gswidth {dup type /stringtype eq {stringwidth} {pop (n) stringwidth} ifelse} def
+/MFwidth {0 exch { dup 5 get 3 ge { 5 get 3 eq { 0
