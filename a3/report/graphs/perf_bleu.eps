@@ -454,4 +454,5 @@ currentdict end definefont pop
      6 get Gswidth pop add} {pop} ifelse} ifelse} forall} def
 /MLshow { currentpoint stroke M
   0 exch R
-  Blacktext {gsave 0 
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MRshow { 
