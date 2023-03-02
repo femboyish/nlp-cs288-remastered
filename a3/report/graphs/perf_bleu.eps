@@ -456,4 +456,6 @@ currentdict end definefont pop
   0 exch R
   Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
 /MRshow { currentpoint stroke M
-  exch dup MFwidth neg 3 -1 roll 
+  exch dup MFwidth neg 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MCshow { currentpoint st
