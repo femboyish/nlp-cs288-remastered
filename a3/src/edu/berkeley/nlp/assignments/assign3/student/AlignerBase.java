@@ -8,4 +8,8 @@ import edu.berkeley.nlp.util.CounterMap;
 import edu.berkeley.nlp.util.StringIndexer;
 
 /**
- * Base class f
+ * Base class for aligners.
+ * 
+ * @author rxin
+ */
+public abstract class AlignerBase imple
