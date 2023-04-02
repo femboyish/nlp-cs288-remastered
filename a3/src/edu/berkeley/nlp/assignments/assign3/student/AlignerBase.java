@@ -12,4 +12,8 @@ import edu.berkeley.nlp.util.StringIndexer;
  * 
  * @author rxin
  */
-public abstract class AlignerBase imple
+public abstract class AlignerBase implements WordAligner {
+
+   protected static final int MAX_SENTENCE_LEN = 1024;
+   
+ 
