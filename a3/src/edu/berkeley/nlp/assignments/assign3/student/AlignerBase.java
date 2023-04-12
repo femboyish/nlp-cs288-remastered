@@ -17,4 +17,6 @@ public abstract class AlignerBase implements WordAligner {
    protected static final int MAX_SENTENCE_LEN = 1024;
    
    /**
-    * French word indexer that maps a French word (java string) 
+    * French word indexer that maps a French word (java string) to an integer.
+    */
+   protected StringIndexer frenchWordInde
