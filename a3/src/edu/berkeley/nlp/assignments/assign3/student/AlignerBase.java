@@ -22,4 +22,7 @@ public abstract class AlignerBase implements WordAligner {
    protected StringIndexer frenchWordIndexer = new StringIndexer();
    
    /**
-    * English word indexer that maps an English word
+    * English word indexer that maps an English word (java string) to an
+    * integer.
+    */
+   protected StringIndexer eng
