@@ -29,4 +29,7 @@ public abstract class AlignerBase implements WordAligner {
    
    protected DynamicIntArray englishWordCounter = new DynamicIntArray(1000);
    
-   protected Dyn
+   protected DynamicIntArray foreignWordCounter = new DynamicIntArray(1000);
+   
+   /**
+    *
