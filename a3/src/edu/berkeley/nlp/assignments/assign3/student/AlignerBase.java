@@ -27,4 +27,6 @@ public abstract class AlignerBase implements WordAligner {
     */
    protected StringIndexer englishWordIndexer = EnglishWordIndexer.getIndexer();
    
-   protected Dyna
+   protected DynamicIntArray englishWordCounter = new DynamicIntArray(1000);
+   
+   protected Dyn
