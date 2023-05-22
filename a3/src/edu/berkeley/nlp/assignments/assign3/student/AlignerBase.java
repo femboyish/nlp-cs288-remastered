@@ -25,4 +25,6 @@ public abstract class AlignerBase implements WordAligner {
     * English word indexer that maps an English word (java string) to an
     * integer.
     */
-   protected StringIndexer eng
+   protected StringIndexer englishWordIndexer = EnglishWordIndexer.getIndexer();
+   
+   protected Dyna
