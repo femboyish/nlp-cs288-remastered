@@ -32,4 +32,6 @@ public abstract class AlignerBase implements WordAligner {
    protected DynamicIntArray foreignWordCounter = new DynamicIntArray(1000);
    
    /**
-    *
+    * Translation probability for <English word, French word> pair occurs.
+    */
+  
