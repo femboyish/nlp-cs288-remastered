@@ -34,4 +34,5 @@ public abstract class AlignerBase implements WordAligner {
    /**
     * Translation probability for <English word, French word> pair occurs.
     */
-  
+   protected CounterMap<Integer, Integer> pairCounters =
+      new Count
