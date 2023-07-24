@@ -38,4 +38,6 @@ public abstract class AlignerBase implements WordAligner {
       new CounterMap<Integer, Integer>();
    
    /**
-    * Train the aligner. This must be c
+    * Train the aligner. This must be called before alignSentencePair().
+    * @param trainingData
+   
