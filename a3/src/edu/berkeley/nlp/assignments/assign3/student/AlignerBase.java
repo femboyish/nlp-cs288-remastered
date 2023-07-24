@@ -40,4 +40,6 @@ public abstract class AlignerBase implements WordAligner {
    /**
     * Train the aligner. This must be called before alignSentencePair().
     * @param trainingData
-   
+    */
+   public abstract void train(Iterable<SentencePair> trainingData);
+  
