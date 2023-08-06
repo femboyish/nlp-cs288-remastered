@@ -42,4 +42,6 @@ public abstract class AlignerBase implements WordAligner {
     * @param trainingData
     */
    public abstract void train(Iterable<SentencePair> trainingData);
-  
+   
+   /* (non-Javadoc)
+    * @see edu.berkeley.nlp.mt.WordAligner#alig
