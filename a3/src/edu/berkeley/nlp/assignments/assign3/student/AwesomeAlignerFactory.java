@@ -2,4 +2,9 @@ package edu.berkeley.nlp.assignments.assign3.student;
 
 import edu.berkeley.nlp.mt.SentencePair;
 import edu.berkeley.nlp.mt.WordAligner;
-import edu.berkeley.nlp.mt.WordAlignerFacto
+import edu.berkeley.nlp.mt.WordAlignerFactory;
+
+public class AwesomeAlignerFactory implements WordAlignerFactory
+{
+
+	pub
