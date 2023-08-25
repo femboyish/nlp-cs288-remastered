@@ -7,4 +7,4 @@ import edu.berkeley.nlp.mt.WordAlignerFactory;
 public class AwesomeAlignerFactory implements WordAlignerFactory
 {
 
-	pub
+	public WordAligner newAligner(Iterable<SentencePair> trainingData) {
