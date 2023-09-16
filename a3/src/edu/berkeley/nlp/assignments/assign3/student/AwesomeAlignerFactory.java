@@ -9,4 +9,8 @@ public class AwesomeAlignerFactory implements WordAlignerFactory
 
 	public WordAligner newAligner(Iterable<SentencePair> trainingData) {
       HmmAligner aligner = new HmmAligner();
-      aligner.train(traini
+      aligner.train(trainingData);
+      return aligner;
+	}
+
+}
