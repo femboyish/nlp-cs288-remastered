@@ -7,4 +7,8 @@ package edu.berkeley.nlp.assignments.assign3.student;
  * 
  * @author rxin
  */
-public class Dynami
+public class DynamicIntArray {
+   
+   private int[] array = null;
+   
+   public
