@@ -11,4 +11,8 @@ public class DynamicIntArray {
    
    private int[] array = null;
    
-   public
+   public DynamicIntArray(int init_size) {
+      array = new int[init_size];
+   }
+   
+   pub
