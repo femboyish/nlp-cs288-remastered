@@ -15,4 +15,8 @@ public class DynamicIntArray {
       array = new int[init_size];
    }
    
-   pub
+   public int get(int index) {
+      return array[index];
+   }
+   
+   public void set
