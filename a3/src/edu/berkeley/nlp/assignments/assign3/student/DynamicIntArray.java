@@ -26,4 +26,8 @@ public class DynamicIntArray {
       array[index] = value;
    }
    
-   public void fas
+   public void fastSet(int index, int value) {
+      array[index] = value;
+   }
+   
+   public vo
