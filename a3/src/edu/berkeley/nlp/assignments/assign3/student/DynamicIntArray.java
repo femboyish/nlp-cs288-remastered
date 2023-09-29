@@ -19,4 +19,6 @@ public class DynamicIntArray {
       return array[index];
    }
    
-   public void set
+   public void set(int index, int value) {
+      if (index >= array.length) {
+         grow(array.len
