@@ -21,4 +21,9 @@ public class DynamicIntArray {
    
    public void set(int index, int value) {
       if (index >= array.length) {
-         grow(array.len
+         grow(array.length * 2);
+      }
+      array[index] = value;
+   }
+   
+   public void fas
