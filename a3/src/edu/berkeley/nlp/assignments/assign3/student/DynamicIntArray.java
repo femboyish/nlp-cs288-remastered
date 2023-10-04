@@ -30,4 +30,6 @@ public class DynamicIntArray {
       array[index] = value;
    }
    
-   public vo
+   public void inc(int index, int value) {
+      if (index >= array.length) {
+  
