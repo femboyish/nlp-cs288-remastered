@@ -36,3 +36,9 @@ public class DynamicIntArray {
       }
       array[index] += value;
    }
+   
+   public int length() {
+      return array.length;
+   }
+   
+   p
