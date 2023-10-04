@@ -32,4 +32,7 @@ public class DynamicIntArray {
    
    public void inc(int index, int value) {
       if (index >= array.length) {
-  
+         grow(array.length * 2);
+      }
+      array[index] += value;
+   }
