@@ -41,4 +41,6 @@ public class DynamicIntArray {
       return array.length;
    }
    
-   p
+   public void grow(int new_size) {
+      int[] new_array = new int[new_size];
+    
