@@ -44,4 +44,7 @@ public class DynamicIntArray {
    public void grow(int new_size) {
       int[] new_array = new int[new_size];
       System.arraycopy(array, 0, new_array, 0, array.length);
-      array = new_a
+      array = new_array;
+   }
+
+}
