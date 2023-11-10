@@ -58,3 +58,75 @@ import edu.berkeley.nlp.mt.SentencePair;
 public class HeuristicAligner extends AlignerBase {
    
    /*
+    * maxTrain | # English | # French
+    * 100      | 1902      | 2145
+    * 1000     | 3663      | 4253
+    * 10000    | 10363     | 12957
+    * 100000   | 25894     | 33709
+    */
+   
+   
+   /* (non-Javadoc)
+    * @see edu.berkeley.nlp.mt.WordAligner#alignSentencePair(edu.berkeley.nlp.mt.SentencePair)
+    */
+   @Override
+   public Alignment alignSentencePair(SentencePair sentencePair) {
+
+      Alignment alignment = new Alignment();
+      int numFrenchWords = sentencePair.getFrenchWords().size();
+      int numEnglishWords = sentencePair.getEnglishWords().size();
+
+      for (int ei = 0; ei < numEnglishWords; ei++) {
+
+         String englishWord = sentencePair.englishWords.get(ei);
+         if (englishWordIndexer.contains(englishWord)) {
+            // Only align if we have seen the English words before. Now find
+            // the French word that generates the highest
+            // c(e, f) / (c(e)*c(f)).
+            int e = englishWordIndexer.addAndGetIndex(englishWord);
+            int bestFrenchWordPos = -1;
+            double bestFrenchWordValue = 0.0;
+            for (int fi = 0; fi < numFrenchWords; fi++) {
+               String frenchWord = sentencePair.frenchWords.get(fi);
+               if (frenchWordIndexer.contains(frenchWord)) {
+                  int f = frenchWordIndexer.addAndGetIndex(frenchWord);
+                  double v = pairCounters.getCount(e, f)
+                        / englishWordCounter.get(e)
+                        / foreignWordCounter.get(f);
+                  if (v > bestFrenchWordValue) {
+                     bestFrenchWordValue = v;
+                     bestFrenchWordPos = fi;
+                  }
+               }
+            }
+            if (bestFrenchWordPos != -1) {
+               alignment.addAlignment(ei, bestFrenchWordPos, true);
+            }
+         }
+      }
+      
+      return alignment;
+   }
+   
+   /**
+    * Train the alignment.
+    * @param trainingData
+    */
+   public void train(Iterable<SentencePair> trainingData) {
+      
+      System.out.println("Training starts ...............");
+
+      // The two buffers are used to cache the word indexes and avoid
+      // an extra lookup step.
+      int[] englishIndexBuffer = new int[MAX_SENTENCE_LEN];
+      int[] frenchIndexBuffer = new int[MAX_SENTENCE_LEN];
+      
+      for (SentencePair pair : trainingData) {
+         
+         int numEnglishWords = pair.englishWords.size();
+         int numFrenchWords = pair.frenchWords.size();
+         
+         for (int i = 0; i < numEnglishWords; i++) {
+            String e = pair.englishWords.get(i);
+            int eIndex = englishWordIndexer.addAndGetIndex(e);
+            englishIndexBuffer[i] = eIndex;
