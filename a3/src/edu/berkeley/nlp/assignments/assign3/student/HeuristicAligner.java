@@ -130,3 +130,36 @@ public class HeuristicAligner extends AlignerBase {
             String e = pair.englishWords.get(i);
             int eIndex = englishWordIndexer.addAndGetIndex(e);
             englishIndexBuffer[i] = eIndex;
+            
+            // Increase the English word count.
+            englishWordCounter.inc(eIndex, 1);
+         }
+         
+         for (int i = 0; i < numFrenchWords; i++) {
+            String f = pair.frenchWords.get(i);
+            int fIndex = frenchWordIndexer.addAndGetIndex(f);
+            frenchIndexBuffer[i] = fIndex;
+            
+            // Increase the French word count.
+            foreignWordCounter.inc(fIndex, 1);
+         }
+         
+         // Increment the frequency counts for <e, f> pairs.
+         for (int ei = 0; ei < numEnglishWords; ei++) {
+            for (int fi = 0; fi < numFrenchWords; fi++) {
+               int e = englishIndexBuffer[ei];
+               int f = frenchIndexBuffer[fi];
+               pairCounters.incrementCount(e, f, 1);
+            }
+         }
+      }
+      
+      System.out.println("Training ends ............... !");
+      
+      // Report some stats.
+      System.out.println("# English Words: " + englishWordIndexer.size());
+      System.out.println("# French Words: " + frenchWordIndexer.size());
+      System.out.println("total pair counts: " + pairCounters.totalCount());
+      System.out.println("total pair size: " + pairCounters.totalSize());
+   }
+}
