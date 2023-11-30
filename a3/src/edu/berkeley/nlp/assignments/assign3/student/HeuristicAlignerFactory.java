@@ -1,4 +1,5 @@
 package edu.berkeley.nlp.assignments.assign3.student;
 
 import edu.berkeley.nlp.mt.SentencePair;
-impo
+import edu.berkeley.nlp.mt.WordAligner;
+import edu.berkeley.nlp.mt.WordAlignerFactory
