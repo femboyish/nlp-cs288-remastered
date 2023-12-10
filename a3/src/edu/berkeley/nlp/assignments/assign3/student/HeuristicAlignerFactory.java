@@ -6,4 +6,5 @@ import edu.berkeley.nlp.mt.WordAlignerFactory;
 
 public class HeuristicAlignerFactory implements WordAlignerFactory {
 
-   public
+   public WordAligner newAligner(Iterable<SentencePair> trainingData) {
+      He
