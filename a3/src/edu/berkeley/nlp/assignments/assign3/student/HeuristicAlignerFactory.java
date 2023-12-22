@@ -8,4 +8,8 @@ public class HeuristicAlignerFactory implements WordAlignerFactory {
 
    public WordAligner newAligner(Iterable<SentencePair> trainingData) {
       HeuristicAligner aligner = new HeuristicAligner();
-      aligner.train(t
+      aligner.train(trainingData);
+      return aligner;
+   }
+
+}
