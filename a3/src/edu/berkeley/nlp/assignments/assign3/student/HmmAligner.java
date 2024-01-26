@@ -182,3 +182,56 @@ public class HmmAligner extends Model1HardEmAligner {
     */
    public void train(Iterable<SentencePair> trainingData) {
       
+      System.out.println("(HMM) Initializing pair counters ...");
+      initializePairCounters(trainingData);
+            
+      for (int emIterNum = 0; emIterNum < NUM_EM_ITERATIONS; emIterNum++) {
+         
+         System.out.println("EM iteration # " + emIterNum + " ...");
+         
+         CounterMap<Integer, Integer> newPairCounters =
+            new CounterMap<Integer, Integer>();
+         
+         int sentenceCount = 0;
+         
+         for (SentencePair pair : trainingData) {
+            sentenceCount ++;
+            double[][] gamma = trainAlignmentForSentence(
+                  pair.frenchWords, pair.englishWords);
+            
+            int numEnglishWords = pair.englishWords.size();
+            int numFrenchWords = pair.frenchWords.size();
+            
+            for (int fi = 0; fi < numFrenchWords; fi++) {
+               for (int ei = 0; ei <= numEnglishWords; ei++) {
+                  newPairCounters.incrementCount(englishIndexBuffer[ei],
+                        frenchIndexBuffer[fi], gamma[fi][ei]);
+               }
+            }
+         }
+         
+         // Normalize the counts.
+         //newPairCounters.normalize();
+         for (Integer k : newPairCounters.keySet()) {
+            Counter<Integer> counter = newPairCounters.getCounter(k);
+            if (counter.totalCount() > 0) {
+               counter.normalize();
+            }
+         }
+      
+         // Switch newPairCounters and pairCounters ...
+         pairCounters = newPairCounters;
+      }
+   }
+   
+   protected void print2dArray(double[][] data) {
+      System.out.println("---------------- 2d -------------------");
+      for (int i = 0; i < data.length; i++) {
+         for (int j = 0; j < data[i].length; j++) {
+            System.out.print(data[i][j] + "\t");
+         }
+         System.out.println();
+      }
+   }
+
+}
