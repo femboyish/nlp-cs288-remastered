@@ -1,1 +1,3 @@
-package edu.berkeley.nlp.a
+package edu.berkeley.nlp.assignments.assign3.student;
+
+import edu.berkeley.nlp.mt.SentencePair;
