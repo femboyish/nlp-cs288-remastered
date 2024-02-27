@@ -9,4 +9,7 @@ public class HmmAlignerFactory implements WordAlignerFactory
 
 	public WordAligner newAligner(Iterable<SentencePair> trainingData) {
 	   HmmAligner aligner = new HmmAligner();
-      aligner.train(tra
+      aligner.train(trainingData);
+      return aligner;
+	}
+}
