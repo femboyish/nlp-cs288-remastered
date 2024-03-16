@@ -8,4 +8,5 @@ public class Model1AlignerFactory implements WordAlignerFactory
 {
 
 	public WordAligner newAligner(Iterable<SentencePair> trainingData) {
-	   Mode
+	   Model1SoftEmWeirdAligner aligner = new Model1SoftEmWeirdAligner();
+	   aligner.tra
