@@ -93,3 +93,73 @@ public class Model1HardEmAligner extends AlignerBase {
             //System.out.println(fi + "," + ei + ": " + probability);
             
             if (probability > bestProbability) {
+               bestProbability = probability;
+               alignments[fi] = ei;
+            }
+         }
+      }
+      
+      return alignments;
+   }
+   
+   /**
+    * Generate the initial word pair counts (translation probability). This
+    * function sets the initial translation probability to
+    * c(e, f) / (c(e)*c(f)).
+    * 
+    * The reason we don't use a simple uniform distribution for initial
+    * probability is because if we do that, most words will be aligned to the
+    * first word in the sentence, which happen to be "the", and converge at
+    * that local optimum.
+    * 
+    * This function is very similar to the HeuristicAligner, except we swap the
+    * order of English and French in pairCount data structure.
+    * 
+    * @param trainingData
+    */
+   protected void initializePairCounters(Iterable<SentencePair> trainingData) {
+      
+      pairCounters = new CounterMap<Integer, Integer>();
+      
+      int sentenceCount = 0;
+      
+      for (SentencePair pair : trainingData) {
+         
+         sentenceCount ++;
+         if (sentenceCount % 10000 == 0) {
+            System.out.println("  init sentence " + sentenceCount);
+         }
+         
+         int numEnglishWords = pair.englishWords.size();
+         int numFrenchWords = pair.frenchWords.size();
+         
+         for (int i = 0; i < numEnglishWords; i++) {
+            String e = pair.englishWords.get(i);
+            int eIndex = englishWordIndexer.addAndGetIndex(e);
+            englishIndexBuffer[i] = eIndex;
+         }
+         
+         // NULL word.
+         englishIndexBuffer[numEnglishWords] = -1;
+         
+         for (int i = 0; i < numFrenchWords; i++) {
+            String f = pair.frenchWords.get(i);
+            int fIndex = frenchWordIndexer.addAndGetIndex(f);
+            frenchIndexBuffer[i] = fIndex;
+         }
+         
+         // Increment the frequency counts for <e, f> pairs.
+         for (int fi = 0; fi < numFrenchWords; fi++) {
+            int f = frenchIndexBuffer[fi];
+            pairCounters.setCount(-1, f, 1);
+            //for (int ei = 0; ei <= numEnglishWords; ei++) {
+            for (int ei = 0; ei < numEnglishWords; ei++) {
+               int e = englishIndexBuffer[ei];
+               pairCounters.incrementCount(e, f, 1);
+            }
+         }
+      }
+      
+      // Normalize the counts.
+      pairCounters.normalize();
+   }
