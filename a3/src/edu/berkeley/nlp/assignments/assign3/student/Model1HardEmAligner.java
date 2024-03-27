@@ -163,3 +163,50 @@ public class Model1HardEmAligner extends AlignerBase {
       // Normalize the counts.
       pairCounters.normalize();
    }
+   
+   /* (non-Javadoc)
+    * @see edu.berkeley.nlp.assignments.assign3.student.AlignerBase#train(java.lang.Iterable)
+    */
+   public void train(Iterable<SentencePair> trainingData) {
+      
+      System.out.println("Initializing pair counters ...");
+      initializePairCounters(trainingData);
+      //initializePairCountersBaseline(trainingData);
+      
+      for (int emIterNum = 0; emIterNum < NUM_EM_ITERATIONS; emIterNum++) {
+         
+         System.out.println("EM iteration # " + emIterNum + " ...");
+         
+         CounterMap<Integer, Integer> newPairCounters =
+            new CounterMap<Integer, Integer>();
+         
+         Counter<Integer> englishProb = new Counter<Integer>();
+         
+         // E step. Find alignment of the highest probability.
+         // M step. Update the translation probability (pairCount).
+         for (SentencePair sentencePair : trainingData) {
+            
+            int[] a = align(sentencePair);
+            
+            int numFrenchWords = sentencePair.frenchWords.size();
+            for (int fi = 0; fi < numFrenchWords; fi++) {
+               if (a[fi] == -1) {
+                  newPairCounters.incrementCount(-1, frenchIndexBuffer[fi], 1);
+                  englishProb.incrementCount(-1, 1);
+               } else {
+                  newPairCounters.incrementCount(englishIndexBuffer[a[fi]],
+                        frenchIndexBuffer[fi], 1);
+                  englishProb.incrementCount(englishIndexBuffer[a[fi]], 1);
+               }
+            }
+         }
+         
+         // Normalize the counts.
+         newPairCounters.normalize();
+         
+         // Switch newPairCounters and pairCounters ...
+         pairCounters = newPairCounters;
+      }
+   }
+
+}
