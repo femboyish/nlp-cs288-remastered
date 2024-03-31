@@ -38,3 +38,66 @@ public class Model1SoftEmWeirdAligner extends Model1HardEmAligner {
          
          System.out.println("EM iteration # " + emIterNum + " / "
                + NUM_EM_ITERATIONS + " ...");
+
+         CounterMap<Integer, Integer> newPairCounters =
+            new CounterMap<Integer, Integer>();
+         
+         // E step. Align the sentence pairs using the existing translation
+         // probability (pairCounters).
+         // M step. Update the translation probability.
+         for (SentencePair sentencePair : trainingData) {
+            
+            int numEnglishWords = sentencePair.englishWords.size();
+            int numFrenchWords = sentencePair.frenchWords.size();
+            
+            // Generate the English word index. Use the last one as NULL
+            // alignment.
+            for (int ei = 0; ei < numEnglishWords; ei++) {
+               String englishWord = sentencePair.englishWords.get(ei);
+               int eIndex = englishWordIndexer.addAndGetIndex(englishWord);
+               englishIndexBuffer[ei] = eIndex;
+            }
+            englishIndexBuffer[numEnglishWords] = -1;
+            
+            // For each French word, update the expectation of alignment count.
+            for (int fi = 0; fi < numFrenchWords; fi++) {
+               String fWord = sentencePair.frenchWords.get(fi);
+               int fWordIndex = frenchWordIndexer.addAndGetIndex(fWord);
+               double sumProbability = 0;
+               
+               // Set the alignment probability for all English words for this
+               // French word.
+               for (int ei = 0; ei < numEnglishWords; ei++) {
+                  double probability = distortionProbability(numEnglishWords)
+                        * pairCounters.getCount(
+                              englishIndexBuffer[ei], fWordIndex);
+                  
+                  alignmentProbability[ei] = probability;
+                  sumProbability += probability;
+               }
+               
+               // Set the alignment probability for this French word and NULL.
+               alignmentProbability[numEnglishWords] = 
+                  weirdNullDistortionLikelihood
+                  * pairCounters.getCount(-1, fWordIndex);
+               sumProbability += alignmentProbability[numEnglishWords];
+
+               // Normalize the alignment probability and update the pair
+               // counts.
+               for (int ei = 0; ei <= numEnglishWords; ei++) {
+                  newPairCounters.incrementCount(englishIndexBuffer[ei],
+                        fWordIndex,
+                        alignmentProbability[ei] / sumProbability);
+               }
+            }
+         }
+         
+         // Normalize the counts.
+         newPairCounters.normalize();
+         
+         // Switch newPairCounters and pairCounters ...
+         pairCounters = newPairCounters;
+      }
+   }
+
+}

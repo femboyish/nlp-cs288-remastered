@@ -1,0 +1,23 @@
+
+## CS288: Updated NLP Course Projects Spring 2021
+
+Assignments for updated NLP course 
+
+femboyish@anonymous-email.com
+
+Tasks: 
+
+a1: An improved, efficient Kneser-Ney trigram language model.
+
+a2: Phrase-Based Decoding implementing 4 distinctive models.
+ - Decoding monotonic beam-search without the language model
+ - Monotonic beam search with integrated trigram language model
+ - Beam search that implements limited distortion
+ - Final model is under development
+
+a3: Word-based alignment model.
+ - Implemented heuristic aligner
+ - IBM model 1 aligner with hard EM and soft EM implementations
+ - Constructed HMM aligner 
+
+a4: Semantic parser and classifier (to-be-processed shortly)
