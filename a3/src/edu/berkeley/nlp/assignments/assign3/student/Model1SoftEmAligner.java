@@ -78,3 +78,30 @@ public class Model1SoftEmAligner extends Model1HardEmAligner {
                   alignmentProbability[ei] = probability;
                   sumProbability += probability;
                }
+               
+               // Set the alignment probability for this French word and NULL.
+               alignmentProbability[numEnglishWords] = nullDistortionLikelihood
+                  * pairCounters.getCount(-1, fWordIndex);
+               sumProbability += alignmentProbability[numEnglishWords];
+
+               // Normalize the alignment probability and update the pair
+               // counts.
+               for (int ei = 0; ei <= numEnglishWords; ei++) {
+                  newPairCounters.incrementCount(englishIndexBuffer[ei],
+                        fWordIndex,
+                        alignmentProbability[ei] / sumProbability);
+                  englishProb.incrementCount(englishIndexBuffer[ei],
+                        alignmentProbability[ei] / sumProbability);
+               }
+            }
+         }
+         
+         // Normalize the counts.
+         newPairCounters.normalize();
+         
+         // Switch newPairCounters and pairCounters ...
+         pairCounters = newPairCounters;
+      }
+   }
+
+}
